@@ -5,3 +5,4 @@ const router = express.Router();
 router.get('/', getPosts);
 
 export default router;
+//Điểu chỉnh route
