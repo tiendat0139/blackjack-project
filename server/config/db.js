@@ -13,3 +13,4 @@ dbConnection.connect((err) => {
     }
     console.log('Connected to database as id ' + dbConnection.threadId);
 });
+//có thể sẽ không dùng file này
