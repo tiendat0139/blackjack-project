@@ -15,10 +15,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }));
 app.use(cors());
 
-app.get("/deck", (req, res) => {
-    shuffle(deck);
-    res.json(deck);
-});
+// app.get("/deck", (req, res) => {
+//     shuffle(deck);
+//     res.json(deck);
+// });
 
 const dbConnection = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
@@ -28,23 +28,23 @@ const dbConnection = mysql.createConnection({
     port: process.env.DB_PORT || '3306'
 });
 
-app.post('/create', (req, res) => {
-    const name = req.body.name;
-    const age = req.body.age;
-    const country = req.body.country;
-    const position = req.body.position;
-    const wage = req.body.wage;
+// app.post('/create', (req, res) => {
+//     const name = req.body.name;
+//     const age = req.body.age;
+//     const country = req.body.country;
+//     const position = req.body.position;
+//     const wage = req.body.wage;
 
-    dbConnection.query('INSERT INTO employees (name, age, country, position, wage) VALUES (?,?,?,?,?)', 
-    [name, age, country, position, wage], 
-    (err, result) => {
-        if (err){
-            console.log(err);
-        } else {
-            res.send("Values Inserted");
-        }
-    });
-});
+//     dbConnection.query('INSERT INTO employees (name, age, country, position, wage) VALUES (?,?,?,?,?)', 
+//     [name, age, country, position, wage], 
+//     (err, result) => {
+//         if (err){
+//             console.log(err);
+//         } else {
+//             res.send("Values Inserted");
+//         }
+//     });
+// });
 
 
 dbConnection.connect((err) => {
