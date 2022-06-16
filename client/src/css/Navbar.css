@@ -1,0 +1,30 @@
+.nav-bar{
+    height: 48px;
+    background-color: #FF0000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.game-name{
+    display: block;
+    padding-left: 48px;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 600;
+}
+.nav-option{
+    padding-right: 48px;
+}
+.nav-link{
+    text-decoration: none;
+}
+.nav-link i{
+    font-size: 24px;
+    color: #fff;
+    margin-left: 24px;
+}
