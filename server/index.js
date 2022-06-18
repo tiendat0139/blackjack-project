@@ -3,9 +3,8 @@ const cors = require('cors');
 const bodyParser = require ('body-parser');
 const mysql = require('mysql');
 
-const posts = require('./routes/posts');
-const { deck } = require('./shuffleDeck');
-const { shuffle } = require('./shuffleDeck');
+const usersRouter = require('./routes/usersRouter');
+
 require('dotenv').config();
 
 const app = express();
@@ -15,10 +14,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }));
 app.use(cors());
 
-// app.get("/deck", (req, res) => {
-//     shuffle(deck);
-//     res.json(deck);
-// });
 
 const dbConnection = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
@@ -28,23 +23,17 @@ const dbConnection = mysql.createConnection({
     port: process.env.DB_PORT || '3306'
 });
 
-// app.post('/create', (req, res) => {
-//     const name = req.body.name;
-//     const age = req.body.age;
-//     const country = req.body.country;
-//     const position = req.body.position;
-//     const wage = req.body.wage;
-
-//     dbConnection.query('INSERT INTO employees (name, age, country, position, wage) VALUES (?,?,?,?,?)', 
-//     [name, age, country, position, wage], 
-//     (err, result) => {
-//         if (err){
-//             console.log(err);
-//         } else {
-//             res.send("Values Inserted");
-//         }
-//     });
-// });
+app.get('/my-casino', (req, res) => {
+    dbConnection.query('SELECT * from users', 
+    (err, result) => {
+        if (err){
+            console.log(err);
+        } else {
+            console.log('Retrieved from database successfully! Code: 001');
+            res.send(result);
+        }
+    });
+});
 
 
 dbConnection.connect((err) => {
@@ -61,4 +50,5 @@ app.listen(PORT, () => {
 });
 
 
-module.exports = app;
+module.exports.app = app;
+module.exports.dbConnection = dbConnection;
