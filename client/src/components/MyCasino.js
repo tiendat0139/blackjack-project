@@ -1,5 +1,5 @@
 import React from 'react';
-import "./MyCasino.css";
+import "../css/MyCasino.css";
 import Axios from 'axios';
 import { useEffect, useState } from "react";
 
