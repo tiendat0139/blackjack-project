@@ -5,9 +5,9 @@ const TopScreen = () => {
     return (
         <div className="top-screen">
             <div className="game-option">
-                <Link to={'#'} className="game-option_item">PVE モード</Link>
-                <Link to={'#'} className="game-option_item">PVP モード</Link>
-                <Link to={'#'} className="game-option_item">ルールと挑戦</Link>
+                <Link to={'/pve'} className="game-option_item">PVE モード</Link>
+                <Link to={'/pvp'} className="game-option_item">PVP モード</Link>
+                <Link to={'/rule'} className="game-option_item">ルールと挑戦</Link>
             </div>
         </div>
     )

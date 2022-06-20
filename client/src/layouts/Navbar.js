@@ -6,8 +6,8 @@ const Navbar = () => {
         <div className="nav-bar">
            <span className="game-name">ブラックジャック王様</span>
            <div className="nav-option">
-                <Link to={'#'} className="nav-link"><i className="fa-solid fa-cart-shopping"></i></Link>
-                <Link to={'store'} className="nav-link nav-user"> 
+                <Link to={'/store'} className="nav-link"><i className="fa-solid fa-cart-shopping"></i></Link>
+                <Link to={'#'} className="nav-link nav-user"> 
                     <i className="fa-solid fa-circle-user "></i>
                     <i className="fa-solid fa-caret-down nav-icon_dropdown"></i>
                     <div className="nav-dropdown">
@@ -17,6 +17,9 @@ const Navbar = () => {
                             </li>
                             <li>
                                 <Link to={'/profile'} className="nav-dropdown_item">プロフィール</Link>
+                            </li>
+                            <li>
+                                <Link to={'/setting'} className="nav-dropdown_item">ログアウト</Link>
                             </li>
                             <li>
                                 <Link to={'/setting'} className="nav-dropdown_item">設定</Link>
