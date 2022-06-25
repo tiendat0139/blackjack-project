@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { useState } from 'react';
 import '../css/Auth.css';
 import '../css/Tailwindcss.css';
-import { BrowserRouter as useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
