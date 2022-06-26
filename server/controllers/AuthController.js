@@ -6,7 +6,7 @@ router.post('/login', (req, res) => {
 
     const username = req.body.username;
     const password = req.body.password;
-
+    console.log(username, password)
     dbConnection.query('SELECT nickname, password FROM users where nickname = ? AND password = ?', [username, password],
     (err, result) => {
         if (err) {

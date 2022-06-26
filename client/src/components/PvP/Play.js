@@ -20,7 +20,8 @@ const PvPPlay = () => {
                 "blackjack-game": "abcd"
               }
         })
-        socket.emit('join',{roomCode})
+        const username = localStorage.getItem('username')
+        socket.emit('join',{roomCode, username})
         
         return () => {
             socket.disconnect();
@@ -43,12 +44,12 @@ const PvPPlay = () => {
             <div className="play-area">
                 <h4 className="play-area_rc">{`Room Code: ${roomCode}`}</h4>
                 <div className="play-area_list">
-                    {roomData.map((user,id) => (
+                    {roomData.map((userInf,id) => (
                         <div className="play-area_item" key={id}>
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU" 
                                 alt="" className="play-area_img">    
                             </img>
-                            <div className="play-area_name">{user}</div>
+                            <div className="play-area_name">{userInf.username}</div>
                         </div>
                     ))}
                 </div>

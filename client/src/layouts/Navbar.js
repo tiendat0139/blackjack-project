@@ -19,7 +19,7 @@ const Navbar = () => {
                                 <Link to={'/profile'} className="nav-dropdown_item">プロフィール</Link>
                             </li>
                             <li>
-                                <Link to={'/setting'} className="nav-dropdown_item">ログアウト</Link>
+                                <Link to={'/login'} className="nav-dropdown_item">ログアウト</Link>
                             </li>
                             <li>
                                 <Link to={'/setting'} className="nav-dropdown_item">設定</Link>

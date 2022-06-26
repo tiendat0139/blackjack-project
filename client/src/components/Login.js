@@ -20,6 +20,9 @@ function Login() {
             const isLoggedIn = response.data.length;
             if (isLoggedIn) {
                 console.log('Logged in successfully');
+
+                if(localStorage.getItem('username')) localStorage.clear()
+                localStorage.setItem('username', username)
                 navigate("/", {replace: true});
             }
             else console.log('Failure to log in: Incorrect incredential');
