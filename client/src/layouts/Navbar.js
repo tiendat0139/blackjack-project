@@ -7,7 +7,7 @@ const Navbar = () => {
            <span className="game-name">ブラックジャック王様</span>
            <div className="nav-option">
                 <Link to={'/store'} className="nav-link"><i className="fa-solid fa-cart-shopping"></i></Link>
-                <Link to={'#'} className="nav-link nav-user"> 
+                <div to={'#'} className="nav-link nav-user"> 
                     <i className="fa-solid fa-circle-user "></i>
                     <i className="fa-solid fa-caret-down nav-icon_dropdown"></i>
                     <div className="nav-dropdown">
@@ -26,7 +26,7 @@ const Navbar = () => {
                             </li>
                         </ul>
                     </div>
-                </Link>
+                </div>
            </div>
         </div>
 

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 function MyCasino(props) {
 
+    // eslint-disable-next-line no-unused-vars
     const[name, setName] = useState('');
     const[level, setLevel] = useState(null);
     const[wins, setWins] = useState(null);

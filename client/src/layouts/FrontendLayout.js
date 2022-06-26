@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import TopScreen from "../components/TopScreen";
 import Navbar from './Navbar';
 import MyCasino from '../components/MyCasino';
+import PvPMode from '../components/PvP/Join'
+import PvPPlay from "../components/PvP/Play";
 const FrontendLayout = () => {
     return (
         <div>
@@ -10,6 +12,8 @@ const FrontendLayout = () => {
             <Routes>
                 <Route path="/" element={<TopScreen />}></Route>
                 <Route path="/my-casino" element={<MyCasino/>}></Route>
+                <Route path="/pvp/*" element={<PvPMode/>}></Route>
+                <Route path="/pvp/play" element={<PvPPlay/>}></Route>
             </Routes>
         </div>
     );
