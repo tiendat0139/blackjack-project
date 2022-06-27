@@ -34,13 +34,13 @@ function Login() {
                 </div>
                 <div className="mb-3 auth-input-label">
                     <label className='mr-4'>ユーザー名</label>
-                    <input type="text" placeholder="Username" onChange={({target}) => {
+                    <input type="text" placeholder="" onChange={({target}) => {
                         setUsername(target.value);
                     }}/>
                 </div>
                 <div className="mb-3 auth-input-label">
                     <label className='mr-4'>パスワード</label>
-                  <input type="password" placeholder="Password" onChange={({target}) => {
+                  <input type="password" placeholder="" onChange={({target}) => {
                     setPassword(target.value);
                   }}/>
                 </div>

@@ -3,7 +3,7 @@ import "../css/MyCasino.css";
 import Axios from 'axios';
 import { useEffect, useState } from "react";
 
-function MyCasino(props) {
+function MyCasino({user}) {
 
     const[name, setName] = useState('');
     const[level, setLevel] = useState(null);
@@ -13,15 +13,20 @@ function MyCasino(props) {
     const[money, setMoney] = useState(0);
 
     useEffect(() => {
-        Axios.get('http://localhost:5000/my-casino').then((response) => {
-            console.log(response.data[1]);
-            setName(response.data[1].name);
-            setLevel(response.data[1].level);
-            setWins(response.data[1].win);
-            setLoses(response.data[1].lose);
-            setDescription(response.data[1].casino_description);
-            setMoney(response.data[1].money);
-        });
+        Axios.post('http://localhost:5000/my-casino', {
+            params: {
+                user_id: user.user_id
+            }
+        })
+        .then((response) => {
+            let data = response.data[0];
+            setName(data.name);
+            setLevel(data.level);
+            setWins(data.win);
+            setLoses(data.lose);
+            setMoney(data.money);
+            setDescription(data.casino_description);
+        })
     },[]);
 
     const handleClick = () => {
