@@ -16,7 +16,7 @@ app.use(cors());
 app.post('/login', AuthController); //login
 app.post('/register', AuthController); //register
 
-app.get('/my-casino', myCasinoController); //retrieve data from database to MyCasino screen
+app.post('/my-casino', myCasinoController); //retrieve data from database to MyCasino screen
 app.post('/my-casino/upgrade', myCasinoController); //upgrade casino level and update the database
 
 app.listen(PORT, () => {
