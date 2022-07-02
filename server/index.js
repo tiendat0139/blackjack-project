@@ -27,7 +27,7 @@ app.post('/my-casino/upgrade', myCasinoController); //upgrade casino level and u
 
 
 // Socket.io
-const {rooms, addUser, removeUser} = require('./rooms.js')
+const {users, addUser, removeUser, addToRoom, removeFromRoom, getRoomData} = require('./users.js')
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -36,21 +36,30 @@ app.use(cors({
 }))
 const server = http.createServer(app)
 const io = new Server(server, {
-    cors:{
+    cors:{ 
         origin: 'http://localhost:3000',
-        allowedHeaders: ["blackjack-game"],
-        credentials: true
-    }
+        allowedHeaders: ["blackjack-game"],  
+        credentials: true 
+    } 
 })
+
 io.on("connection", (socket) => {
-    socket.on('join',({roomCode, username}) => {
-        addUser(roomCode, socket.id, username)
-        socket.join(roomCode)
-        const currentRoom = rooms[roomCode]
-        io.to(roomCode).emit('room-data', currentRoom)
+    socket.on('join',  (username) => {   // join and all-socket has socket.id not equal
+        addUser(socket.id, username)
+        io.emit('all-user', users);
     })
-    socket.on('disconnect', () => {
-        removeUser(socket.id)
+    socket.on('join-room', ({username, roomid}) => {  
+        addToRoom(username, roomid) 
+        socket.join(roomid)
+        const roomData = getRoomData(roomid)
+        io.to(roomid).emit('room-data', roomData)
+    })
+    socket.on('out-room',({username, roomid}) => {
+        removeFromRoom(username, roomid)
+        socket.leave(roomid)
+    })
+    socket.on('send-invite', ({sender, receiverId, roomid}) => {
+        io.to(receiverId).emit('invite',{sender, roomid})
     })
 })
 

@@ -13,13 +13,13 @@ const PvPMode = () => {
                     <input type="text" className="join-form_input" name="room_code" placeholder="Enter a room code"
                         value={code} onChange={(e) => setCode(e.target.value)}>
                     </input>
-                    <Link to={`play?roomCode=${code}`} className="join-form_btn">JOIN</Link>
+                    <Link to={`play?roomCode=${code}&owner=false`} className="join-form_btn">JOIN</Link>
                 </div>
                 <div className="text-or">
                     <img src={pvptext} alt="pvptext"></img>
                 </div>
                 <div className="create-form">
-                    <Link to={`play?roomCode=${randomString(5)}`}>
+                    <Link to={`play?roomCode=${randomString(5)}&owner=true`}>
                         <button type="submit" className="create_btn">CREATE ROOM</button>
                     </Link>
                 </div>
