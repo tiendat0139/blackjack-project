@@ -75,3 +75,50 @@
     padding: 14px 28px;
     opacity: 0.8;
 }
+/* leave-btn extends style of play-btn */
+.leave-btn{
+    margin-left: 34px;
+    background-color: #CD8500;
+    border-bottom: 4px solid #8B5A00;
+}
+
+/* List user online */
+.player-onl_list{
+    margin-top: 30px;
+}
+.player-onl_item{
+    display: flex;
+    position: relative;
+}
+.player-onl_item::after{
+    content: "";
+    position: absolute;
+    width: 216px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    bottom: 0;
+    left: 20px;
+}
+.player-onl_img{
+    margin: 10px 20px;
+    width: 30px;
+    height: auto;
+    border-radius: 50%;
+}
+.player-onl_name{
+    min-width: 120px;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.player-onl_icon{
+    color: #fff;
+    font-size: 24px;
+    line-height: 50px;
+    margin-left: 40px;
+    cursor: pointer;
+}
+.player-onl_icon:hover{
+    opacity: 0.8;
+    font-size: 22px;
+}

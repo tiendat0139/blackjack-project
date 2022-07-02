@@ -6,10 +6,13 @@ import Login from '../components/Login'
 import MyCasino from '../components/MyCasino';
 import PvPMode from '../components/PvP/Join'
 import PvPPlay from "../components/PvP/Play";
+import Notifi from "../components/Notifi";
+
 const FrontendLayout = () => {
     return (
         <div>
             <Navbar/>
+            <Notifi />
             <Routes>
                 <Route path="/" element={<TopScreen />}></Route>
                 <Route path="/my-casino" element={<MyCasino/>}></Route>
