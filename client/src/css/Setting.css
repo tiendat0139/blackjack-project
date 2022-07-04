@@ -1,0 +1,43 @@
+.setting {
+    padding-top: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.setting-content {
+    background-color: black;
+    color: white;
+    padding: 60px 80px 60px 80px;
+    border: 2px #FF0000 solid;
+    border-radius: 20px;
+    width: 64%;
+}
+
+.h1 {
+    font-size: 40px;
+    font-weight: 800;
+    padding-bottom: 16px;
+}
+
+.fields {
+    width: 100%;
+}
+
+.buttons {
+    justify-content: flex-end;
+}
+
+.actions {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.buttons button {
+    margin: 0 8px 0 8px;
+}
+
+.buttons button:hover {
+    opacity: 0.8;
+}

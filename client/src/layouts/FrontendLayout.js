@@ -6,6 +6,11 @@ import MyCasino from '../components/MyCasino';
 import ProtectedRoute from "../components/ProtectedRoute";
 import BlackJack from "../BlackJack";
 import LoginComponent from "../components/LoginComponent";
+import Setting from "../components/Setting";
+import "../css/components/button.css"
+import "../css/components/modal.css"
+import AudioProvider from "../provider/AudioProvider";
+
 export default class FrontendLayout extends Component {
     constructor(props){
         super(props);
@@ -23,7 +28,7 @@ export default class FrontendLayout extends Component {
 
     render(){
         return (
-            <div>
+            <AudioProvider>
                 <Navbar user={this.state.user} onLogout={() => {
                     this.setState({user: null}, () => {
                         console.log('Logged out!!');
@@ -31,16 +36,17 @@ export default class FrontendLayout extends Component {
                 }}/>
                 <Routes>
                     <Route path="/login" element={<LoginComponent user={this.state.user} onSubmit={this.handleAuth} />}></Route>
-                    <Route element={<ProtectedRoute user={this.state.user} />}>
+                    {/* <Route element={<ProtectedRoute user={this.state.user} />}> */}
                         <Route path="/" element={<TopScreen/>}></Route>
                         <Route path='/pve' element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/my-casino" element={<MyCasino user={this.state.user} />}></Route>
                         <Route path='/profile' element={<BlackJack/>}></Route>
                         <Route path='/setting' element={<BlackJack/>}></Route>
                         <Route path='/store' element={<BlackJack/>}></Route>
-                    </Route>
+                    {/* </Route> */}
+                    <Route path="/game/setting" element={<Setting />}></Route>
                 </Routes>
-            </div>
+            </AudioProvider>
         );
     }  
 }
