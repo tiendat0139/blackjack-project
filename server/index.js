@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
         addUser(socket.id, username)
         io.emit('all-user', users);
     })
-    socket.on('join-room', ({username, roomid}) => {  
+    socket.on('join-room', ({username, roomid}) => { 
         addToRoom(username, roomid) 
         socket.join(roomid)
         const roomData = getRoomData(roomid)
