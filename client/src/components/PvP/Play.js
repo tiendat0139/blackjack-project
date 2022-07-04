@@ -10,7 +10,7 @@ const PvPPlay = () => {
     const [owner, setOwner] = useState()
     const [roomData, setRoomData] = useState([])
     const [users, setUsers] = useState([])
-
+    const [invitedBtn, setInvitedBtn] = useState(false)
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [searchParams] = useSearchParams()
     const navigate = useNavigate();
@@ -44,6 +44,10 @@ const PvPPlay = () => {
         return findUser.roomid === ''
     }
     const invitePlayer = (e) => {
+        setInvitedBtn(true)
+        setTimeout(() => {
+            setInvitedBtn(false)
+        }, 2000);
         const data_id = e.target.getAttribute('data_id');
         const receiverId = users[data_id].userid
         const sender = username
@@ -66,7 +70,10 @@ const PvPPlay = () => {
                             <div className="player-onl_name">{user.username}</div>
                             {checkInRoom(user.username) ?
                                 <div  className="player-onl_icon">
-                                    <i className="fa-solid fa-circle-plus" data_id = {index} onClick={(e) => invitePlayer(e)}></i>
+                                    <i className={!invitedBtn?"fa-solid fa-circle-plus": "fa-solid fa-check"}
+                                        data_id = {index}
+                                        onClick={(e) => invitePlayer(e)}>
+                                     </i>
                                 </div>
                                 : '' 
                             }

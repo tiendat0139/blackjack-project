@@ -16,14 +16,11 @@ const Notifi = () => {
     const handleHide = () => {
         setShow(false)
     }
-    const handleShow = () => {
-        setShow(true)
-    }
     return <div className={`noti ${show? 'show' : 'hide'}`}>
-        <h4 className='noti-header'>Tien Dat moi ban vao tran dau</h4>
+        <h4 className='noti-header'>{sendUser} があなたを試合に招待した</h4>
         <div className='noti-opt'>
             <Link to={`pvp/play?roomCode=${roomid}&owner=false`}>
-                <button className='noti-opt_acp' onClick={handleShow}>Accept</button>
+                <button className='noti-opt_acp' onClick={handleHide}>Accept</button>
             </Link>
             <button className='noti-opt_refu' onClick={handleHide}>Refure</button>
         </div>
