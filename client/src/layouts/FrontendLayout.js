@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
-import TopScreen from "../components/TopScreen";
+import TopScreen from "../pages/top/TopScreen";
 import Navbar from './Navbar';
-import MyCasino from '../components/MyCasino';
-import ProtectedRoute from "../components/ProtectedRoute";
+import MyCasino from '../pages/mycasino/MyCasino';
+import ProtectedRoute from "../middleware/ProtectedRoute";
 import BlackJack from "../BlackJack";
 import LoginComponent from "../components/LoginComponent";
-import Setting from "../components/Setting";
 import "../css/components/button.css"
 import "../css/components/modal.css"
 import AudioProvider from "../provider/AudioProvider";
@@ -41,10 +40,9 @@ export default class FrontendLayout extends Component {
                         <Route path='/pve' element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/my-casino" element={<MyCasino user={this.state.user} />}></Route>
                         <Route path='/profile' element={<BlackJack/>}></Route>
-                        <Route path='/setting' element={<BlackJack/>}></Route>
+                        {/* <Route path='/setting' element={<BlackJack/>}></Route> */}
                         <Route path='/store' element={<BlackJack/>}></Route>
                     {/* </Route> */}
-                    <Route path="/game/setting" element={<Setting />}></Route>
                 </Routes>
             </AudioProvider>
         );

@@ -1,4 +1,4 @@
-import "../css/components/field.css"
+import "../../../css/components/field.css"
 
 export default function Field({ label, content }) {
     return (

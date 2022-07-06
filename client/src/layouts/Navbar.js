@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Setting from "../components/Setting";
+import Setting from "../pages/setting/Setting";
 import '../css/Navbar.css'
 import "../css/components/modal.css"
+import "../css/components/window.css";
 
 const Navbar = ({ user, onLogout }) => {
     const [isShowSettingModal, setShowSettingModal] = useState(false)
@@ -11,7 +12,7 @@ const Navbar = ({ user, onLogout }) => {
         setShowSettingModal(true)
     }
 
-    const handleCancelSettingModel = () => {
+    const handleCancelSettingModal = () => {
         setShowSettingModal(false)
     }
 
@@ -49,9 +50,10 @@ const Navbar = ({ user, onLogout }) => {
             </div>
             </div>
             {isShowSettingModal && (
-                <div className="modal">
-                    <Setting handleCancel={handleCancelSettingModel} />
-                </div>
+                <>
+                    <div className="modal" onClick={handleCancelSettingModal}></div>
+                    <Setting handleCancel={handleCancelSettingModal} />
+                </>
             )}
         </>
     )

@@ -1,5 +1,5 @@
 .setting {
-    padding-top: 120px;
+    padding-top: 160px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -8,10 +8,11 @@
 .setting-content {
     background-color: black;
     color: white;
-    padding: 60px 80px 60px 80px;
+    padding: 54px 60px 54px 60px;
     border: 2px #FF0000 solid;
     border-radius: 20px;
-    width: 64%;
+    width: 60%;
+    z-index: 8;
 }
 
 .h1 {

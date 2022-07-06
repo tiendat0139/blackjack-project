@@ -1,20 +1,22 @@
-import Field from "./Field";
-import Switch from "./Switch";
-import Volume from "./Volume";
-import "../css/Setting.css"
+import Field from "./components/Field";
+import Switch from "../../components/Switch";
+import Volume from "./components/Volume";
+import "../../css/Setting.css"
 import { useContext, useState } from "react";
-import { AudioContext } from "../provider/AudioProvider";
-import "../css/components/modal.css"
+import { AudioContext } from "../../provider/AudioProvider";
+import "../../css/components/modal.css"
 
 export default function Setting({ handleCancel }) {
     const { bgMusic } = useContext(AudioContext)
 
-    const [musicVolume, setMusicVolume] = useState(0)
+    const [musicVolume, setMusicVolume] = useState({ before: bgMusic.volume * 10, current: bgMusic.volume * 10 })
 
     const handleVolume = (volume) => {
-        console.log(bgMusic, bgMusic.paused)
         bgMusic.volume = volume / 10
-        setMusicVolume(volume)
+        setMusicVolume({
+            ...musicVolume,
+            current: volume
+        })
         if (bgMusic.paused) bgMusic.play()
     }
 
@@ -30,13 +32,14 @@ export default function Setting({ handleCancel }) {
     }
 
     const handleOk = () => {
-        
+        bgMusic.volume = musicVolume.current / 10
+        console.log("...");
         handleCancel()
     }
 
     return (
-        <div className="setting modal-content">
-            <div className="setting-content">
+        <div className="setting">
+            <div className="setting-content modal-content">
                 <h1 className="h1">設定</h1>
                 <div className="fields">
                     <Field 
@@ -44,7 +47,7 @@ export default function Setting({ handleCancel }) {
                             <button onClick={handleOnOff}>音楽</button>
                         }
                         content={
-                            <Volume handleVolume={handleVolume} currentVolume={musicVolume} />
+                            <Volume handleVolume={handleVolume} currentVolume={musicVolume.current} />
                         }
                     />
                     <Field
@@ -66,8 +69,8 @@ export default function Setting({ handleCancel }) {
                 </div>
                 <div className="actions">
                     <div className="buttons">
-                        <button className="button-cancel" onClick={handleCancel}>キャンセル</button>
-                        <button className="button-ok" onClick={handleOk}>完了</button>
+                        <button className="button-cancel" onClick={() => { bgMusic.volume = musicVolume.before / 10; handleCancel() }}>キャンセル</button>
+                        <button className="button-ok" onClick={() => handleOk()}>完了</button>
                     </div>
                 </div>
             </div>

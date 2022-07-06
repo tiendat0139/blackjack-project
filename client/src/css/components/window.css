@@ -1,0 +1,5 @@
+.window {
+    inset: 0;
+    z-index: 6;
+    position: fixed;
+}
