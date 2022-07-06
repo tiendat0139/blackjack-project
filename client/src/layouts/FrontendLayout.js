@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
-import TopScreen from "../components/TopScreen";
+import TopScreen from "../pages/top/TopScreen";
 import Navbar from './Navbar';
-import MyCasino from '../components/MyCasino';
-import ProtectedRoute from "../components/ProtectedRoute";
-import BlackJack from "../BlackJack";
+import MyCasino from '../pages/mycasino/MyCasino';
+import ProtectedRoute from "../middleware/ProtectedRoute";
+import BlackJack from "../pages/play/BlackJack";
 import LoginComponent from "../components/LoginComponent";
+import "../css/components/button.css"
+import "../css/components/modal.css"
+import AudioProvider from "../provider/AudioProvider";
+import PvPMode from '../components/PvP/Join';
+import PvPPlay from "../components/PvP/Play";
+
 export default class FrontendLayout extends Component {
     constructor(props){
         super(props);
@@ -23,7 +29,7 @@ export default class FrontendLayout extends Component {
 
     render(){
         return (
-            <div>
+            <AudioProvider>
                 <Navbar user={this.state.user} onLogout={() => {
                     this.setState({user: null}, () => {
                         console.log('Logged out!!');
@@ -31,16 +37,18 @@ export default class FrontendLayout extends Component {
                 }}/>
                 <Routes>
                     <Route path="/login" element={<LoginComponent user={this.state.user} onSubmit={this.handleAuth} />}></Route>
-                    <Route element={<ProtectedRoute user={this.state.user} />}>
+                    {/* <Route element={<ProtectedRoute user={this.state.user} />}> */}
                         <Route path="/" element={<TopScreen/>}></Route>
                         <Route path='/pve' element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/my-casino" element={<MyCasino user={this.state.user} />}></Route>
                         <Route path='/profile' element={<BlackJack/>}></Route>
-                        <Route path='/setting' element={<BlackJack/>}></Route>
-                        <Route path='/store' element={<BlackJack/>}></Route>
-                    </Route>
+                        {/* <Route path='/setting' element={<BlackJack/>}></Route> */}
+                        <Route path='/store' element={<BlackJack />}></Route>
+                        <Route path="/pvp/*" element={<PvPMode/>}></Route>
+                        <Route path="/pvp/play" element={<PvPPlay/>}></Route>
+                    {/* </Route> */}
                 </Routes>
-            </div>
+            </AudioProvider>
         );
     }  
 }

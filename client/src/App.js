@@ -1,16 +1,15 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes,Route} from 'react-router-dom'
-
+import "./styles.css";
+import { Routes , Route} from 'react-router-dom'
 import FrontendLayout from '../src/layouts/FrontendLayout'
+import BlackJack from "../src/pages/play/BlackJack"
 
 function App() {
   return (
     <div className="App">
-      <Router>
         <Routes>
           <Route path='/*' exact element={<FrontendLayout/>}></Route>
+          {/* <Route path='/pve' exact element={<BlackJack />}></Route> */}
         </Routes>
-      </Router>
     </div>
   );
 }
