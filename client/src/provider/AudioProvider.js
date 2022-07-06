@@ -1,12 +1,15 @@
 import { createContext, useEffect, useState } from "react"
-import BgMusicUrl from "../assets/audio/music/minionsund-minion-underwear.mp3"
+import { BgMusic, HitSound, NextSound, StandSound } from "../assets/audio/audio"
 
 export const AudioContext = createContext()
 
-const BgMusic = new Audio(BgMusicUrl)
-
 export default function AudioProvider({ children }) {
     const [bgMusic] = useState(BgMusic)
+    const [sound] = useState({
+        hitSound: HitSound,
+        standSound: StandSound,
+        nextSound: NextSound,
+    })
 
     useEffect(() => {
         bgMusic.autoplay = true
@@ -19,7 +22,7 @@ export default function AudioProvider({ children }) {
     }, [])
 
     return (
-        <AudioContext.Provider value={{ bgMusic }}>
+        <AudioContext.Provider value={{ bgMusic, sound }}>
             { children }
         </AudioContext.Provider>
     )

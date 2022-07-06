@@ -87,7 +87,7 @@ export default function Setting({ handleCancel }) {
                 </div>
                 <div className="actions">
                     <div className="buttons">
-                        <button className="button-cancel" onClick={}>キャンセル</button>
+                        <button className="button-cancel" onClick={handleCancelButton}>キャンセル</button>
                         <button className="button-ok" onClick={() => handleOkButton()}>完了</button>
                     </div>
                 </div>
