@@ -20,7 +20,7 @@ function Login() {
             if (isLoggedIn) {
                 console.log('Logged in successfully');
 
-                if(localStorage.getItem('username')) localStorage.clear()
+                if(localStorage.getItem('username')) localStorage.removeItem('username')
                 localStorage.setItem('username',username)
                 socket.emit('join',username)
                 navigate("/", {replace: true});

@@ -29,8 +29,8 @@ const addToRoom = (username, roomid) => {
         findUser.roomid = roomid
     }
 }
-const removeFromRoom = (username, roomid) => {
-    const findUser = users.find(e => e.username === username && e.roomid === roomid)
+const removeFromRoom = (userid, roomid) => {
+    const findUser = users.find(e => e.userid === userid && e.roomid === roomid)
     if(!findUser){
         console.log('User not exists in any room')
     } else {

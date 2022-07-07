@@ -54,9 +54,11 @@ io.on("connection", (socket) => {
         const roomData = getRoomData(roomid)
         io.to(roomid).emit('room-data', roomData)
     })
-    socket.on('out-room',({username, roomid}) => {
-        removeFromRoom(username, roomid)
+    socket.on('out-room',(roomid) => {
+        removeFromRoom(socket.id, roomid) 
         socket.leave(roomid)
+        const roomData = getRoomData(roomid)
+        io.to(roomid).emit('room-data', roomData)
     })
     socket.on('send-invite', ({sender, receiverId, roomid}) => {
         io.to(receiverId).emit('invite',{sender, roomid})

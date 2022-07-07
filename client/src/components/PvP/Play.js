@@ -31,6 +31,9 @@ const PvPPlay = () => {
         socket.on('room-data', (roomData) => {
             setRoomData(roomData)
         })
+        return () => {
+            socket.emit('out-room',roomid);
+        }
     },[roomid, username])
 
     useEffect(() => {
@@ -54,7 +57,7 @@ const PvPPlay = () => {
         socket.emit('send-invite', {sender, receiverId, roomid})
     }
     const handleOutRoom = () => {
-        socket.emit('out-room',({username, roomid}))
+        socket.emit('out-room',roomid)
         navigate('/')
     }
 
