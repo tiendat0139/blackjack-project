@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require ('body-parser'); 
@@ -5,25 +6,41 @@ const bodyParser = require ('body-parser');
 const mysql = require('mysql');
 const http = require('http')
 const {Server} = require('socket.io')
+=======
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+>>>>>>> 7ec37440df49fb67471bcb2a3b5f0343725826c5
 
-const myCasinoController = require('./controllers/MyCasinoController');
-const AuthController =  require('./controllers/AuthController');
-const dbConnection = require('./config/database');
+const myCasinoController = require("./controllers/MyCasinoController");
+const AuthController = require("./controllers/AuthController");
+const ItemController = require("./controllers/ItemController");
+const CategoryController = require("./controllers/CategoryController");
+const dbConnection = require("./config/database");
 
 
 const app = express();
 const PORT = process.env.port || 5000;
 
 app.use(bodyParser.json());
+<<<<<<< HEAD
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' })); 
+=======
+app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
+>>>>>>> 7ec37440df49fb67471bcb2a3b5f0343725826c5
 app.use(cors());
 
-app.post('/login', AuthController); //login
-app.post('/register', AuthController); //register
+app.post("/login", AuthController); //login
+app.post("/register", AuthController); //register
 
-app.get('/my-casino', myCasinoController); //retrieve data from database to MyCasino screen
-app.post('/my-casino/upgrade', myCasinoController); //upgrade casino level and update the database
+app.post("/my-casino", myCasinoController); //retrieve data from database to MyCasino screen
+app.post("/my-casino/upgrade", myCasinoController); //upgrade casino level and update the database
 
+app.get("/store", ItemController);
+app.get("/store/category/:id", ItemController);
+app.get("/category", CategoryController);
+
+<<<<<<< HEAD
 
 
 // Socket.io
@@ -73,3 +90,10 @@ server.listen(PORT, () => {
 
 module.exports.app = app;
 // module.exports.dbConnection = dbConnection;
+=======
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}...`);
+});
+
+module.exports.app = app;
+>>>>>>> 7ec37440df49fb67471bcb2a3b5f0343725826c5

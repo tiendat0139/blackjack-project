@@ -3,8 +3,11 @@ const dbConnection  = require('../config/database');
 
 const router = express.Router();
 
-router.get('/my-casino', (req, res) => {
-    dbConnection.query('SELECT * from users', 
+router.post('/my-casino', (req, res) => {
+
+    const user_id = req.body.params.user_id;
+
+    dbConnection.query('SELECT * from users WHERE user_id = ?', [user_id], 
     (err, result) => {
         if (err){
             res.send({err: err});

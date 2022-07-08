@@ -6,8 +6,13 @@ router.post('/login', (req, res) => {
 
     const username = req.body.username;
     const password = req.body.password;
+<<<<<<< HEAD
     console.log(username, password)
     dbConnection.query('SELECT nickname, password FROM users where nickname = ? AND password = ?', [username, password],
+=======
+
+    dbConnection.query('SELECT user_id FROM users where nickname = ? AND password = ?', [username, password],
+>>>>>>> 7ec37440df49fb67471bcb2a3b5f0343725826c5
     (err, result) => {
         if (err) {
             res.send({err: err});

@@ -4,8 +4,9 @@ import { useState } from 'react';
 import '../css/Auth.css';
 import '../css/Tailwindcss.css';
 import { useNavigate } from "react-router-dom";
-import socket from '../components/Socket';
+
 function Login() {
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -19,10 +20,6 @@ function Login() {
             const isLoggedIn = response.data.length;
             if (isLoggedIn) {
                 console.log('Logged in successfully');
-
-                if(localStorage.getItem('username')) localStorage.removeItem('username')
-                localStorage.setItem('username',username)
-                socket.emit('join',username)
                 navigate("/", {replace: true});
             }
             else console.log('Failure to log in: Incorrect incredential');
@@ -37,13 +34,13 @@ function Login() {
                 </div>
                 <div className="mb-3 auth-input-label">
                     <label className='mr-4'>ユーザー名</label>
-                    <input type="text" placeholder="Username" onChange={({target}) => {
+                    <input type="text" placeholder="" onChange={({target}) => {
                         setUsername(target.value);
                     }}/>
                 </div>
                 <div className="mb-3 auth-input-label">
                     <label className='mr-4'>パスワード</label>
-                  <input type="password" placeholder="Password" onChange={({target}) => {
+                  <input type="password" placeholder="" onChange={({target}) => {
                     setPassword(target.value);
                   }}/>
                 </div>
