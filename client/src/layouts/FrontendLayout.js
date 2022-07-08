@@ -6,6 +6,8 @@ import MyCasino from '../components/MyCasino';
 import ProtectedRoute from "../components/ProtectedRoute";
 import BlackJack from "../BlackJack";
 import LoginComponent from "../components/LoginComponent";
+import Store from "../components/Store";
+
 export default class FrontendLayout extends Component {
     constructor(props){
         super(props);
@@ -37,7 +39,8 @@ export default class FrontendLayout extends Component {
                         <Route path="/my-casino" element={<MyCasino user={this.state.user} />}></Route>
                         <Route path='/profile' element={<BlackJack/>}></Route>
                         <Route path='/setting' element={<BlackJack/>}></Route>
-                        <Route path='/store' element={<BlackJack/>}></Route>
+                        <Route path="/store/" element={<Store />}></Route>
+                        <Route path="/store/category/:id" element={<Store />}></Route>
                     </Route>
                 </Routes>
             </div>
