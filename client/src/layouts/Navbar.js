@@ -19,11 +19,8 @@ const Navbar = ({user, onLogout}) => {
                                 <Link to={'/profile'} className="nav-dropdown_item">プロフィール</Link>
                             </li>
                             <li>
-                                <Link to={'/logout'} className="nav-dropdown_item">ログアウト</Link>
-                            </li>
-                            <li>
                                 <Link to={'/login'} className="nav-dropdown_item">
-                                    <span onClick={onLogout}>Logout</span>
+                                    <span onClick={onLogout}>ログアウト</span>
                                 </Link>
                             </li>
                             <li>
