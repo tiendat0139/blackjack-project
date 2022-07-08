@@ -147,3 +147,36 @@ export function getDeck(numberOfDeck = 1) {
     return "WIN!!";
   }
   
+export function getActionOnPlayer(dealersHand, playersHand){
+  const dealersScore = getLastScore(dealersHand);
+    const playersScore = getLastScore(playersHand);
+  
+   
+    if (getTotal(playersHand) > 21) {
+      return "lose";
+    }
+  
+    if (dealersScore === playersScore) {
+      return "push";
+    }
+  
+    if (isBlackJack(playersHand)) {
+      return "blackjack";
+    }
+   
+    if (isBlackJack(dealersHand)) {
+      return "lose";
+    }
+   
+    if (dealersScore > 21) {
+      return "win";
+    }
+    if (dealersScore < playersScore) {
+      return "win";
+    }
+    if (dealersScore > playersScore) {
+      return "lose";
+    }
+  
+    return 'win';
+}
