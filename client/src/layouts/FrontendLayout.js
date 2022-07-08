@@ -1,29 +1,9 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
-import TopScreen from "../components/TopScreen";
+import TopScreen from "../pages/TopScreen";
 import Navbar from './Navbar';
-import Login from '../components/Login'
-import MyCasino from '../components/MyCasino';
-<<<<<<< HEAD
-import PvPMode from '../components/PvP/Join'
-import PvPPlay from "../components/PvP/Play";
-import Notifi from "../components/Notifi";
-
-const FrontendLayout = () => {
-    return (
-        <div>
-            <Navbar/>
-            <Notifi />
-            <Routes>
-                <Route path="/" element={<TopScreen />}></Route>
-                <Route path="/my-casino" element={<MyCasino/>}></Route>
-                <Route path="/pvp/*" element={<PvPMode/>}></Route>
-                <Route path="/pvp/play" element={<PvPPlay/>}></Route>
-                <Route path="/login" element={<Login/>}></Route>
-            </Routes>
-        </div>
-    );
-=======
+import Login from '../pages/Login'
+import MyCasino from '../pages/MyCasino';
 import ProtectedRoute from "../components/ProtectedRoute";
 import BlackJack from "../BlackJack";
 import LoginComponent from "../components/LoginComponent";
@@ -67,5 +47,4 @@ export default class FrontendLayout extends Component {
             </div>
         );
     }  
->>>>>>> 7ec37440df49fb67471bcb2a3b5f0343725826c5
 }
