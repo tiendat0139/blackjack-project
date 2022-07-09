@@ -61,6 +61,8 @@ const PvPPlay = () => {
         navigate('/')
     }
 
+    console.log("Playing")
+
     return (
         <div className="pvp-play">
             <div className="player-onl">
