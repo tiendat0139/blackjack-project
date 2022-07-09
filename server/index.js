@@ -24,6 +24,7 @@ app.post("/my-casino/upgrade", myCasinoController); //upgrade casino level and u
 app.get("/store", ItemController);
 app.get("/store/category/:id", ItemController);
 app.get("/category", CategoryController);
+app.get("/useritem/:id", ItemController);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}...`);

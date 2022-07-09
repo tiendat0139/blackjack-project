@@ -1,9 +1,9 @@
 import React from "react";
 import "../css/Store.css";
-import Pagination from "./Pagination";
+import Pagination from "../components/Pagination";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Item from "./Item";
+import Item from "../components/Item";
 
 const Store = () => {
   const { id } = useParams();

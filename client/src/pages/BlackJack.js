@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from "react";
-import { useStyles } from "./hooks/useStyles";
-import PlayArea from "./components/PlayArea";
+import { useStyles } from "../hooks/useStyles";
+import PlayArea from "../components/PlayArea";
 import { Box, Typography } from "@material-ui/core";
-import BlackJackButtons from "./components/BlackJackButtons";
-import GameProgressButton from "./components/GameProgressButton";
-import * as BlackJackUtilities from "./utilities/BlackJackUtilities";
+import BlackJackButtons from "../components/BlackJackButtons";
+import GameProgressButton from "../components/GameProgressButton";
+import * as BlackJackUtilities from "../utilities/BlackJackUtilities";
 import { toast, Toaster } from "react-hot-toast";
 
 const initialDeck = BlackJackUtilities.getDeck(3);
