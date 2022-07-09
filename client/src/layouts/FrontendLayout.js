@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import TopScreen from "../pages/TopScreen";
-import Navbar from './Navbar';
-import MyCasino from '../pages/MyCasino';
+import Navbar from "./Navbar";
+import MyCasino from "../pages/MyCasino";
 import ProtectedRoute from "../components/ProtectedRoute";
 import BlackJack from "../pages/BlackJack";
-import LoginComponent from "../pages/LoginComponent";
+import LoginComponent from "../components/LoginComponent";
+import Store from "../pages/Store";
 import Register from "../pages/Register";
+
 export default class FrontendLayout extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            user: null
-        };
-        this.handleAuth = this.handleAuth.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: false,
+      user: null,
+    };
+    this.handleAuth = this.handleAuth.bind(this);
+  }
 
     handleAuth(user){
         this.setState({user: user}, () => {
@@ -39,9 +42,10 @@ export default class FrontendLayout extends Component {
                         <Route path="/my-casino" element={<MyCasino user={this.state.user} />}></Route>
                         <Route path="/pvp" element={<MyCasino user={this.state.user} />}></Route>
                         <Route path="/rule" element={<BlackJack user={this.state.user} />}></Route>
+                        <Route path="/store/" element={<Store />}></Route>
+                        <Route path="/store/category/:id" element={<Store />}></Route>
                         {/* <Route path='/profile' element={<BlackJack/>}></Route>
-                        <Route path='/setting' element={<BlackJack/>}></Route>
-                        <Route path='/store' element={<BlackJack/>}></Route> */}
+                        <Route path='/setting' element={<BlackJack/>}></Route> */}
                     </Route>
                 </Routes>
             </div>

@@ -119,7 +119,6 @@ function reducer(state, action) {
      
       if (BlackJackUtilities.getTotal(state.playersHand) === 21) {
         const [newDeck, newHand] = dealForDealer(state.deck, state.dealersHand);
-        
         const judge = BlackJackUtilities.getActionOnPlayer(newHand, state.playersHand);
         if (judge === 'win'){
           const newMoney = state.money + state.bet;
@@ -201,7 +200,6 @@ export default function Border7({user}) {
       });
     }
   }, [state.deck, state.minimumNumber]);
-
   function update(){
     Axios.post('http://localhost:5000/pve-update', {
       user_id: user.user_id,
