@@ -14,13 +14,14 @@ export default class FrontendLayout extends Component {
     super(props);
     this.state = {
       loggedIn: false,
-      user: null,
+      user: 1,
     };
     this.handleAuth = this.handleAuth.bind(this);
   }
 
     handleAuth(user){
         this.setState({user: user}, () => {
+            console.log(user)
             console.log('Okay you can play this game!');
         });
     }
