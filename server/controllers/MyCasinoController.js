@@ -14,11 +14,11 @@ router.post('/my-casino', (req, res) => {
             console.log(err);
         } 
         if (result.length > 0){
-            console.log('Retrieved data from database successfully! Code: 001');
+            console.log('Retrieved data from database successfully! Code: myCasinoController');
             res.send(result);
         } else {
             res.send({message: 'User not found!'});
-            console.log('User not found! Error code: 001!');
+            console.log('User not found! Error code: myCasinoController!');
         }
     });
 });

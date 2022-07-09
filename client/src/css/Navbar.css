@@ -19,6 +19,7 @@
 }
 .nav-option{
     padding-right: 64px;
+    display: flex;
 }
 .nav-link{
     text-decoration: none;
