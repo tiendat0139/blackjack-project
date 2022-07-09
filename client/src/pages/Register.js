@@ -68,7 +68,7 @@ function Register({user}) {
     
     const validate = (values) => {
         const errors = {};
-        const regexEmail = /^[\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (!values.username){
             errors.username = "ユーザー名は必須入力！";
         } else if (values.username.length > 45 || values.username.length < 6){
