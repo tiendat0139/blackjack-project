@@ -19,6 +19,7 @@ const Store = () => {
       if (!id) {
         result = await fetch("http://localhost:5000/store");
         result = await result.json();
+        console.log(result)
         setItemlist(result);
       } else {
         result = await fetch(`http://localhost:5000/store/category/${id}`);

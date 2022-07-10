@@ -8,6 +8,8 @@ import BlackJack from "../pages/BlackJack";
 import LoginComponent from "../components/LoginComponent";
 import Store from "../pages/Store";
 import Register from "../pages/Register";
+import Join from "../components/PvP/Join"
+import Play from "../components/PvP/Play"
 
 export default class FrontendLayout extends Component {
   constructor(props) {
@@ -21,6 +23,7 @@ export default class FrontendLayout extends Component {
 
     handleAuth(user){
         this.setState({user: user}, () => {
+            // console.log(user)
             console.log('Okay you can play this game!');
         });
     }
@@ -40,7 +43,8 @@ export default class FrontendLayout extends Component {
                         <Route path="/" element={<TopScreen/>}></Route>
                         <Route path='/pve' element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/my-casino" element={<MyCasino user={this.state.user} />}></Route>
-                        <Route path="/pvp" element={<MyCasino user={this.state.user} />}></Route>
+                        <Route path="/pvp" element={<Join />}></Route>
+                        <Route path="/pvp/play" element={<Play />}></Route>
                         <Route path="/rule" element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/store/" element={<Store />}></Route>
                         <Route path="/store/category/:id" element={<Store />}></Route>

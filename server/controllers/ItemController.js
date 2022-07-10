@@ -35,7 +35,7 @@ router.get("/useritem/:id", (req, res) => {
     `SELECT * from users LEFT JOIN users_items on users.user_id = users_items.user_id LEFT JOIN items on users_items.item_id = items.item_id WHERE users.user_id = ${req.params.id}`,
     (err, result) => {
       if (err) {
-        console.log("Can't retrieve");
+        console.log("Can't retrieve user item");
       } else {
         console.log("Retrieved from database successfully! Code: 001");
         res.send(result);

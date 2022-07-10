@@ -28,6 +28,7 @@ function MyCasino({ user }) {
         user_id: user.user_id,
       },
     }).then((response) => {
+      console.log(response)
       let data = response.data[0];
       setName(data.name);
       setLevel(data.level);
