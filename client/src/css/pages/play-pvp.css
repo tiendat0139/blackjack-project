@@ -1,0 +1,44 @@
+.play-pvp {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.auth {
+    position: absolute;
+    left: 0
+}
+
+.another {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.action {
+    padding: 8px;
+    width: 100px;
+    border-radius: 20px;
+}
+
+.hit {
+    background-color: red;
+}
+
+.stand {
+    background-color: green;
+}
+
+.deal {
+    background-color: black;
+    border: 2px solid white;
+}
+
+.auth > .card-flow {
+    margin-left: -50px
+}
+
+.another > .card-flow {
+    margin-right: -50px;
+}

@@ -3,7 +3,7 @@ const dbConnection = require('../config/database');
 const router = express.Router();
 
 router.post('/login', (req, res) => {
-
+    console.log(req.body)
     const username = req.body.username;
     const password = req.body.password;
 
@@ -13,7 +13,7 @@ router.post('/login', (req, res) => {
             res.send({err: err});
             console.log(err);
         }
-        if (result.length > 0) {
+        if (result) {
             res.send(result);
             console.log(`The player ${username} has just logged in`);
         } else {

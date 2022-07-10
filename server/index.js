@@ -1,9 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-// const bodyParser = require ('body-parser');
+const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const http = require('http')
-const {Server} = require('socket.io')
+const { Server } = require('socket.io')
+const AuthController = require("./controllers/AuthController");
 
 // const usersRouter = require('./routes/usersRouter');
 
@@ -12,8 +13,8 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.port || 5000;
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }));
 
 // const dbConnection = mysql.createConnection({
 //     host: process.env.DB_HOST || 'localhost',
@@ -47,13 +48,17 @@ const PORT = process.env.port || 5000;
 
 
 // Socket.io
-const {rooms, addUser, removeUser} = require('./rooms.js')
+const {rooms, addUser, removeUser} = require('./socket/rooms.js');
+const { hitCard, deal, changePattern, standCard } = require('./socket/play-pvp');
 
 app.use(cors({
-    origin: 'http://localhost3000',
+    origin: 'http://localhost:3000',
     method: ['GET', 'POST'],
     credentials: true
 }))
+
+app.post("/login", AuthController); 
+
 const server = http.createServer(app)
 const io = new Server(server, {
     cors:{
@@ -63,14 +68,43 @@ const io = new Server(server, {
     }
 })
 io.on("connection", (socket) => {
-    socket.on('join',({roomCode}) => {
-        addUser(roomCode, socket.id)
+    socket.on('join',({roomCode, user, pattern}) => {
+        addUser(roomCode, user, pattern)
         socket.join(roomCode)
         const currentRoom = rooms[roomCode]
         io.to(roomCode).emit('room-data', currentRoom)
+        console.log(rooms);
     })
-    socket.on('disconnect', () => {
-        removeUser(socket.id)
+
+    socket.on('deal', ({ roomCode, cards }) => {
+        deal(roomCode, cards)
+        const currentRoom = rooms[roomCode]
+        io.to(roomCode).emit("room-data", currentRoom)
+    })
+
+    socket.on('hit-card', ({ roomCode, user, card }) => {
+        hitCard(roomCode, user, card)
+        const currentRoom = rooms[roomCode]
+        io.to(roomCode).emit("room-data", currentRoom)
+        console.log(rooms);
+    })
+
+    socket.on('stand-card', ({ roomCode }) => {
+        standCard(roomCode)
+        const currentRoom = rooms[roomCode]
+        io.to(roomCode).emit("room-data", currentRoom)
+        console.log(rooms);
+    })
+
+    socket.on('change-pattern', ({ roomCode, user, pattern }) => {
+        changePattern(roomCode, user, pattern)
+        const currentRoom = rooms[roomCode]
+        io.to(roomCode).emit("room-data", currentRoom)
+        console.log(rooms);
+    })
+
+    socket.on('disconnect', (user) => {
+        removeUser(user)
     })
 })
 

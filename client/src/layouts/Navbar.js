@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { memo, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Setting from "../pages/setting/Setting";
 import '../css/Navbar.css'
 import "../css/components/modal.css"
 import "../css/components/window.css";
+import { Modal } from "@material-ui/core";
 
 const Navbar = ({ user, onLogout }) => {
     const [isShowSettingModal, setShowSettingModal] = useState(false)
@@ -50,12 +51,14 @@ const Navbar = ({ user, onLogout }) => {
             </div>
             </div>
             {isShowSettingModal && (
-                <>
-                    <div className="modal" onClick={handleCancelSettingModal}></div>
+                <Modal
+                    open={isShowSettingModal}
+                    onClose={handleCancelSettingModal}
+                >
                     <Setting handleCancel={handleCancelSettingModal} />
-                </>
+                </Modal>
             )}
         </>
     )
 }
-export default Navbar
+export default memo(Navbar)

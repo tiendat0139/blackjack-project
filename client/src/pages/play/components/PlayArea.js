@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Grid, Chip } from "@material-ui/core";
-import Card from "./Card";
 import * as BJUtilities from "../../../utilities/BlackJackUtilities"
 import { useStyles } from "../../../hooks/useStyles";
+import Card from "../../../components/Card";
+import { ThemeContext } from "../../../provider/ThemeProvider";
 
 export default function PlayArea(props) {
+  const { pattern } = useContext(ThemeContext)
+
   const classes = useStyles();
   return (
     <Box className={classes.playArea}>
@@ -18,10 +21,9 @@ export default function PlayArea(props) {
         <Grid item>
           <Box
             className="arrow_box_common arrow_box_dealer"
-            visibility={props.isTurnEnd ? "visible" : "hidden"}
           >
-            {props.dealersHand.length !== 0 &&
-              BJUtilities.getScoreForDisplay(props.dealersHand)}
+            {props.dealersHand.length !== 0 && props.isTurnEnd ?
+              BJUtilities.getScoreForDisplay(props.dealersHand) : "?"}
           </Box>
           <Grid container direction="row">
             {props.dealersHand.map((card, index) => {
@@ -29,7 +31,7 @@ export default function PlayArea(props) {
               const hide = index === 1 && !props.isTurnEnd ? true : false;
               return (
                 <Grid item key={index} style={{ marginLeft: marginLeft }}>
-                  <Card card={card} hide={hide} />
+                  <Card card={card} hide={hide} srcImg={pattern} />
                 </Grid>
               );
             })}

@@ -32,11 +32,18 @@ export default class LoginComponent extends Component {
         this.setState({user_id: id});
     }
 
-    handleLogin(){
+    handleLogin() {
+
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        console.log(user);
         Axios.post('http://localhost:5000/login', {
             username: this.state.username,
             password: this.state.password
         }).then((response) => {
+            console.log(response.data);
             const isLoggedIn = response.data.length;
             if (isLoggedIn) {
                 let id = response.data[0].user_id;
