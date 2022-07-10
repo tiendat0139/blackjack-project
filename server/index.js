@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require ('body-parser'); 
@@ -6,16 +5,12 @@ const bodyParser = require ('body-parser');
 const mysql = require('mysql');
 const http = require('http')
 const {Server} = require('socket.io')
-=======
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
->>>>>>> 7ec37440df49fb67471bcb2a3b5f0343725826c5
 
 const myCasinoController = require("./controllers/MyCasinoController");
 const AuthController = require("./controllers/AuthController");
 const ItemController = require("./controllers/ItemController");
 const CategoryController = require("./controllers/CategoryController");
+const PVEController = require("./controllers/PvEController")
 const dbConnection = require("./config/database");
 
 
@@ -23,11 +18,7 @@ const app = express();
 const PORT = process.env.port || 5000;
 
 app.use(bodyParser.json());
-<<<<<<< HEAD
-app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' })); 
-=======
 app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
->>>>>>> 7ec37440df49fb67471bcb2a3b5f0343725826c5
 app.use(cors());
 
 app.post("/login", AuthController); //login
@@ -41,7 +32,8 @@ app.get("/store/category/:id", ItemController);
 app.get("/category", CategoryController);
 app.get("/useritem/:id", ItemController);
 
-<<<<<<< HEAD
+app.post("/pve", PVEController);
+
 
 
 // Socket.io
@@ -62,11 +54,14 @@ const io = new Server(server, {
 })
 
 io.on("connection", (socket) => {
+    console.log(socket.id)
     socket.on('join',  (username) => {   // join and all-socket has socket.id not equal
+        console.log(username)
         addUser(socket.id, username)
         io.emit('all-user', users);
     })
     socket.on('join-room', ({username, roomid}) => { 
+        console.log("joining room")
         addToRoom(username, roomid) 
         socket.join(roomid)
         const roomData = getRoomData(roomid)
@@ -91,10 +86,3 @@ server.listen(PORT, () => {
 
 module.exports.app = app;
 // module.exports.dbConnection = dbConnection;
-=======
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}...`);
-});
-
-module.exports.app = app;
->>>>>>> 7ec37440df49fb67471bcb2a3b5f0343725826c5

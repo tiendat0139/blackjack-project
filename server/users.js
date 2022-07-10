@@ -3,13 +3,15 @@ const users = []
 
 const addUser = (userid, username) => {
     const usernameTrim = username.trim()
+    console.log(username)
     const exist = users.find(e => e.username === usernameTrim);
     if(exist){
         console.log('User has joined app')
+        users.push({userid:userid, username, roomid : ''})
     } else {
         users.push({userid:userid, username, roomid : ''})
     }
-    console.log(users)
+    // console.log(users)
 }
 const removeUser = (username) => {
     const findId = users.find(e => e.username === username)
