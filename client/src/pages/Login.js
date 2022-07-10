@@ -4,7 +4,7 @@ import { useState } from 'react';
 import '../css/Auth.css';
 import '../css/Tailwindcss.css';
 import { useNavigate } from "react-router-dom";
-
+import socket from '../components/Socket'
 function Login() {
 
     const [username, setUsername] = useState('');
@@ -20,6 +20,9 @@ function Login() {
             const isLoggedIn = response.data.length;
             if (isLoggedIn) {
                 console.log('Logged in successfully');
+                if(localStorage.getItem('username')) localStorage.removeItem('username')
+                localStorage.setItem('username',username)
+                socket.emit('join',username)
                 navigate("/", {replace: true});
             }
             else console.log('Failure to log in: Incorrect incredential');

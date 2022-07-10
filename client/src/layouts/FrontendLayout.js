@@ -10,7 +10,7 @@ import Store from "../pages/Store";
 import Register from "../pages/Register";
 import Join from "../components/PvP/Join"
 import Play from "../components/PvP/Play"
-
+import Lucky from "../components/Lucky";
 export default class FrontendLayout extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +48,7 @@ export default class FrontendLayout extends Component {
                         <Route path="/rule" element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/store/" element={<Store />}></Route>
                         <Route path="/store/category/:id" element={<Store />}></Route>
+                        <Route path="/store/lucky" element={<Lucky />}></Route>
                         {/* <Route path='/profile' element={<BlackJack/>}></Route>
                         <Route path='/setting' element={<BlackJack/>}></Route> */}
                     </Route>
