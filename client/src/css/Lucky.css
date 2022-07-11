@@ -1,14 +1,83 @@
-#canvas{
-    background-color: #6f4b3e;
+canvas{
+    background-color: #6f4b3e ;
+    border-radius: 50%;
 }
 .lucky{
-    margin-top: 100px;
+    margin-top: 60px;
     font-size: 32px;
+}
+.lucky-nav{
+    padding: 0 16vw;
+    display: flex;
+    justify-content: space-between;
+}
+.ticket{
+    color: #fff;
+    font-size: 24px;
+    padding: 0 20px;
+    background-color: #4d9247;
+    border-radius: 6px;
+    line-height: 48px;
+}
+.store{
+    color: #fff;
+    margin: 0;
 }
 .lucky-header{
     color: #fff;
 }
-#canvas{
-    margin: auto;
+.lucky-wheel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
+img{
+    width: 17%;
+    height: auto;
+}
+button{
+    margin-top: 20px;
+    background-color: #4d9247;
+    padding: 10px 40px;
+    color: #fff;
+    border-radius: 10px;
+    border-bottom: 6px solid #377732 ;
+}
+button:hover{
+    padding: 8px 36px;
+}
+@keyframes zoom {
+    from{
+        width: 0;
+        height: 0;
+    }
+}
+.prize{
+    position: absolute;
+    width: 450px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    transform: translateX(-50%) translateY(-50%);
+    animation: zoom .3s ease-in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+.prize.hidden{
+    display: none;
+}
+.prize-header{
+    color: #f75e4d;
+}
+.prize-desc{
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.5);
+}

@@ -31,9 +31,6 @@ const PvPPlay = () => {
         socket.on('room-data', (roomData) => {
             setRoomData(roomData)
         })
-        return () => {
-            socket.emit('out-room',roomid);
-        }
     },[roomid, username])
 
     useEffect(() => {

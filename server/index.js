@@ -31,7 +31,8 @@ app.get("/store", ItemController);
 app.get("/store/category/:id", ItemController);
 app.get("/category", CategoryController);
 app.get("/useritem/:id", ItemController);
-
+app.get("/store/lucky/:id", ItemController);
+app.put("/store/lucky", ItemController)
 app.post("/pve", PVEController);
 
 
@@ -41,7 +42,7 @@ const {users, addUser, removeUser, addToRoom, removeFromRoom, getRoomData} = req
 
 app.use(cors({
     origin: 'http://localhost:3000',
-    method: ['GET', 'POST'],
+    method: ['GET', 'POST', 'PUT'],
     credentials: true
 }))
 const server = http.createServer(app)
@@ -65,7 +66,7 @@ io.on("connection", (socket) => {
         io.to(roomid).emit('room-data', roomData)
     })
     socket.on('out-room',(roomid) => {
-        removeFromRoom(socket.id, roomid) 
+        removeFromRoom(socket.id, roomid)
         socket.leave(roomid)
         const roomData = getRoomData(roomid)
         io.to(roomid).emit('room-data', roomData)

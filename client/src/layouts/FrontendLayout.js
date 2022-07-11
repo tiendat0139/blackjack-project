@@ -48,7 +48,7 @@ export default class FrontendLayout extends Component {
                         <Route path="/rule" element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/store/" element={<Store />}></Route>
                         <Route path="/store/category/:id" element={<Store />}></Route>
-                        <Route path="/store/lucky" element={<Lucky />}></Route>
+                        <Route path="/store/lucky" element={<Lucky user={this.state.user} />}></Route>
                         {/* <Route path='/profile' element={<BlackJack/>}></Route>
                         <Route path='/setting' element={<BlackJack/>}></Route> */}
                     </Route>
