@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post('/login', (req, res) => {
 
+    console.log(req.body)
     const username = req.body.username;
     const password = req.body.password;
 

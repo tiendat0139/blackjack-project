@@ -22,6 +22,7 @@ export default function PlayArea(props) {
           >
             {props.dealersHand.length !== 0 &&
               BJUtilities.getScoreForDisplay(props.dealersHand)}
+
           </Box>
           <Grid container direction="row">
             {props.dealersHand.map((card, index) => {
@@ -60,6 +61,38 @@ export default function PlayArea(props) {
         {props.playersHand.length !== 0 &&
           BJUtilities.getScoreForDisplay(props.playersHand)}
       </Box>
+      <Grid
+        container
+        direction="row"
+        spacing={1}
+        justify="center">
+          <Grid item>
+            <Grid
+              container
+              direction="column"
+              justify="center">
+                <Box className="arrow_box_common arrow_box_dealer" mt="20px">
+                  Money
+                </Box>
+                <Box className="arrow_box_common arrow_box_player" mt="20px">
+                  {props.money}
+                </Box>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid
+              container
+              direction="column"
+              alignItems="center">
+              <Box className="arrow_box_common arrow_box_dealer" mt="20px">
+                  Bet
+              </Box>
+              <Box className="arrow_box_common arrow_box_player" mt="20px">
+                {props.bet}
+              </Box> 
+            </Grid>
+          </Grid>
+        </Grid>
     </Box>
   );
 }

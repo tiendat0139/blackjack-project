@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import '../css/Auth.css';
 import '../css/Tailwindcss.css';
-import socket from './Socket';
 
 
 export default class LoginComponent extends Component {
@@ -44,7 +43,6 @@ export default class LoginComponent extends Component {
                 this.setState({user_id: id}, () => {
                     this.props.onSubmit(this.state);
                 });
-                socket.emit('join', this.state.username)
             } else {
                 console.log('Failed to log in: Incorrect credentials');
             }
@@ -70,6 +68,10 @@ export default class LoginComponent extends Component {
                     <div className="mb-3 auth-input-label">
                         <label className='mr-4'>パスワード</label>
                         <input type="password" placeholder="" onChange={this.onChangePassword}/>                 
+                    </div>
+                    <div className='flex flex-row justify-center'>
+                        <Link to={'/register'} className="register-link"><span style={{color: "white"}}>アカウントない？</span>サインアップ</Link>
+                        <Link to={'/password-reset'} className="register-link">パスワードを忘れ？</Link>
                     </div>
                     <div className="button-div">
                         <button type="button" className="w-40 h-10 button-submit" onClick={this.handleLogin}>ログイン</button>
