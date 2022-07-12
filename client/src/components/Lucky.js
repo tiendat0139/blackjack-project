@@ -6,16 +6,16 @@ import {Wheel} from 'react-custom-roulette'
 
 const Lucky = ({user}) => {
     const [hidden, setHidden] = useState(true)
-    const [ticket, setTicket] = useState()
+    const [ticket, setTicket] = useState(4)
     const [mustSpin, setMustSpin] = useState(false);
     const [prizeNumber, setPrizeNumber] = useState(0);
 
-    useEffect(() => {
-        axios.get(`http://localhost:5000/store/lucky/${user}`).then(res => {
-            setTicket(res.data[0].number)
-        })
+    // useEffect(() => {
+    //     axios.get(`http://localhost:5000/store/lucky/${user}`).then(res => {
+    //         setTicket(res.data[0].number)
+    //     })
        
-    },[user])
+    // },[user])
 
     const data  = [
         {option: 'item 0', style: {backgroundColor: '#7e19a5', textColor: '#fff'}},
@@ -51,6 +51,7 @@ const Lucky = ({user}) => {
                 <div className='ticket'>Ticket: {ticket} <i className="fa-solid fa-ticket"></i></div>
             </div>
             <h1 className='lucky-header'>WHEEL OF FORTUNE</h1>
+            <myConfetti />
             <div className='lucky-wheel'>
                 <Wheel
                     mustStartSpinning = {mustSpin}
@@ -71,7 +72,7 @@ const Lucky = ({user}) => {
                     }}
                     spinDuration = {0.5}
                 />
-                <button onClick={handleSpinClick}>Spin</button>
+                <button className = "spin-btn"onClick={handleSpinClick}>Spin</button>
             </div>
             <div className={`prize ${hidden? 'hidden' : ''}`}>
                 <span className='prize-header'>Congratulations!!!</span>

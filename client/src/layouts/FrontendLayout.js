@@ -11,6 +11,7 @@ import Register from "../pages/Register";
 import Join from "../components/PvP/Join"
 import Play from "../components/PvP/Play"
 import Lucky from "../components/Lucky";
+import Notifi from "../components/Notifi"
 export default class FrontendLayout extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +28,6 @@ export default class FrontendLayout extends Component {
             console.log('Okay you can play this game!');
         });
     }
-
     render(){
         return (
             <div>
@@ -36,6 +36,7 @@ export default class FrontendLayout extends Component {
                         console.log('Logged out!!');
                     });
                 }}/>
+                <Notifi />
                 <Routes>
                     <Route path="/register" element={<Register user={this.state.user}/>}></Route>
                     <Route path="/login" element={<LoginComponent user={this.state.user} onSubmit={this.handleAuth} />}></Route>
@@ -44,7 +45,7 @@ export default class FrontendLayout extends Component {
                         <Route path='/pve' element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/my-casino" element={<MyCasino user={this.state.user} />}></Route>
                         <Route path="/pvp" element={<Join />}></Route>
-                        <Route path="/pvp/play" element={<Play />}></Route>
+                        <Route path="/pvp/play" element={<Play user={this.state.user}/> }></Route>
                         <Route path="/rule" element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/store/" element={<Store />}></Route>
                         <Route path="/store/category/:id" element={<Store />}></Route>

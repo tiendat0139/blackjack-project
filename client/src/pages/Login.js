@@ -11,7 +11,6 @@ function Login() {
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
-
     const handleLogin = () => {
         Axios.post('http://localhost:5000/login',{
             username: username,

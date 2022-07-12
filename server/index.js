@@ -39,7 +39,7 @@ app.post("/pve", PVEController);
 
 // Socket.io
 const {users, addUser, removeUser, addToRoom, removeFromRoom, getRoomData} = require('./users.js')
-
+ 
 app.use(cors({
     origin: 'http://localhost:3000',
     method: ['GET', 'POST', 'PUT'],
@@ -52,7 +52,7 @@ const io = new Server(server, {
         allowedHeaders: ["blackjack-game"],  
         credentials: true 
     } 
-})
+}) 
 
 io.on("connection", (socket) => {
     socket.on('join',  (username) => {   // join and all-socket has socket.id not equal
@@ -63,8 +63,9 @@ io.on("connection", (socket) => {
         addToRoom(username, roomid) 
         socket.join(roomid)
         const roomData = getRoomData(roomid)
+        io.to(socket.id).emit('all-user', users)
         io.to(roomid).emit('room-data', roomData)
-    })
+    }) 
     socket.on('out-room',(roomid) => {
         removeFromRoom(socket.id, roomid)
         socket.leave(roomid)
@@ -73,6 +74,10 @@ io.on("connection", (socket) => {
     })
     socket.on('send-invite', ({sender, receiverId, roomid}) => {
         io.to(receiverId).emit('invite',{sender, roomid})
+    })
+    socket.on('disconnect', () => {
+        removeUser(socket.id)
+        io.emit('all-user', users)
     })
 })
 

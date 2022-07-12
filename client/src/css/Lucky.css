@@ -3,7 +3,6 @@ canvas{
     border-radius: 50%;
 }
 .lucky{
-    margin-top: 60px;
     font-size: 32px;
 }
 .lucky-nav{
@@ -36,7 +35,7 @@ img{
     width: 17%;
     height: auto;
 }
-button{
+.spin-btn{
     margin-top: 20px;
     background-color: #4d9247;
     padding: 10px 40px;
@@ -44,7 +43,7 @@ button{
     border-radius: 10px;
     border-bottom: 6px solid #377732 ;
 }
-button:hover{
+.spin-btn:hover{
     padding: 8px 36px;
 }
 @keyframes zoom {
