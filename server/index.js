@@ -12,13 +12,14 @@ const ItemController = require("./controllers/ItemController");
 const CategoryController = require("./controllers/CategoryController");
 const PVEController = require("./controllers/PvEController")
 const dbConnection = require("./config/database");
+const AvatarController = require('./controllers/AvatarController');
 
 
 const app = express();
 const PORT = process.env.port || 5000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(cors());
 
 app.post("/login", AuthController); //login
@@ -32,9 +33,11 @@ app.get("/store/category/:id", ItemController);
 app.get("/category", CategoryController);
 app.get("/useritem/:id", ItemController);
 
-app.post("/pve", PVEController);
+app.post('/pve', PvEController);
+app.post('/pve-update', PvEController);
 
-
+app.post('/avatar-upload', AvatarController);
+app.post('/avatar', AvatarController);
 
 // Socket.io
 const {users, addUser, removeUser, addToRoom, removeFromRoom, getRoomData} = require('./users.js')
