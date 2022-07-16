@@ -55,11 +55,14 @@ const io = new Server(server, {
 }) 
 
 io.on("connection", (socket) => {
+    console.log(socket.id)
     socket.on('join',  (username) => {   // join and all-socket has socket.id not equal
+        console.log(username)
         addUser(socket.id, username)
         io.emit('all-user', users);
     })
     socket.on('join-room', ({username, roomid}) => { 
+        console.log("joining room")
         addToRoom(username, roomid) 
         socket.join(roomid)
         const roomData = getRoomData(roomid)

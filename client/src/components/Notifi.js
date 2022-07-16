@@ -9,6 +9,7 @@ const Notifi = () => {
     const [roomid, setRoomid] = useState('')
     const [show, setShow] = useState(false)
     socket.on('invite',({sender, roomid}) => {
+        console.log("inviting")
         setSenduser(sender)
         setRoomid(roomid)
         setShow(true)

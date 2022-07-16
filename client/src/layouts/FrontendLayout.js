@@ -10,8 +10,12 @@ import Store from "../pages/Store";
 import Register from "../pages/Register";
 import Join from "../components/PvP/Join"
 import Play from "../components/PvP/Play"
+<<<<<<< HEAD
 import Lucky from "../components/Lucky";
 import Notifi from "../components/Notifi"
+=======
+
+>>>>>>> a4c91874b1f8964b590a5873888880fdce878c7c
 export default class FrontendLayout extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +28,11 @@ export default class FrontendLayout extends Component {
 
     handleAuth(user){
         this.setState({user: user}, () => {
+<<<<<<< HEAD
             console.log(user)
+=======
+            // console.log(user)
+>>>>>>> a4c91874b1f8964b590a5873888880fdce878c7c
             console.log('Okay you can play this game!');
         });
     }
@@ -45,7 +53,11 @@ export default class FrontendLayout extends Component {
                         <Route path='/pve' element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/my-casino" element={<MyCasino user={this.state.user} />}></Route>
                         <Route path="/pvp" element={<Join />}></Route>
+<<<<<<< HEAD
                         <Route path="/pvp/play" element={<Play user={this.state.user}/> }></Route>
+=======
+                        <Route path="/pvp/play" element={<Play />}></Route>
+>>>>>>> a4c91874b1f8964b590a5873888880fdce878c7c
                         <Route path="/rule" element={<BlackJack user={this.state.user} />}></Route>
                         <Route path="/store/" element={<Store />}></Route>
                         <Route path="/store/category/:id" element={<Store />}></Route>
