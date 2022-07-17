@@ -10,12 +10,12 @@ const Lucky = ({user}) => {
     const [mustSpin, setMustSpin] = useState(false);
     const [prizeNumber, setPrizeNumber] = useState(0);
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:5000/store/lucky/${user}`).then(res => {
-    //         setTicket(res.data[0].number)
-    //     })
+    useEffect(() => {
+        axios.get(`http://localhost:5000/store/lucky/${user}`).then(res => {
+            setTicket(res.data[0].number)
+        })
        
-    // },[user])
+    },[user])
 
     const data  = [
         {option: 'item 0', style: {backgroundColor: '#7e19a5', textColor: '#fff'}},
