@@ -1,0 +1,36 @@
+.top-screen{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 48px;
+    bottom: 0;
+    z-index: 0;
+    background-image: url('../../src/assets/img/topbg.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.game-option{
+    width: 500px;
+    height: 300px;
+    margin: 100px auto 0;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 14px #FF0000;
+    border-radius: 20px;
+    background-color: #000;
+}
+.game-option_item{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    height: 40px;
+    margin-top: 24px;
+    background-color: #FF0000;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 40px;
+}

@@ -1,0 +1,45 @@
+.store {
+    margin-top: 48px;
+}
+
+.label {
+    text-align: center;
+    background-color: brown;
+}
+
+.coin {
+    float: right;
+    position: fixed;
+}
+
+.selling {
+    display: flex;
+}
+
+.category {
+    height:100vh;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: #0F8E04;
+    flex: 1 1 300px;
+}
+
+.itemlist {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #FF0000;
+    flex: 1 1 1500px;
+}
+
+.itemimage {
+    height: 200px;
+    overflow:hidden
+}
+
+.item {
+    width: 300px;
+    height:300px;
+    margin: 0px 0px 0px 20px;
+    background-color: white;
+}
