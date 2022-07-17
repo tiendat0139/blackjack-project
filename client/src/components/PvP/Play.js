@@ -11,7 +11,6 @@ const PvPPlay = ({user}) => {
     const [roomData, setRoomData] = useState([])
     const [users, setUsers] = useState([])
     const [invitedBtn, setInvitedBtn] = useState(false)
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [searchParams] = useSearchParams()
     const navigate = useNavigate();
     useEffect(() => {
