@@ -16,6 +16,7 @@ import LoginComponent from "../pages/LoginComponent";
 import Notifi from "../components/Notifi";
 import "../css/button.css"
 import Lucky from "../components/Lucky";
+import Profile from "../pages/Profile";
 
 export default class FrontendLayout extends Component {
   constructor(props) {
@@ -53,6 +54,8 @@ export default class FrontendLayout extends Component {
                             <Route path="/pvp" element={<Join />}></Route>
                             <Route path="/pvp/waiting-room/:roomCode" element={<Play user={this.state.user} />}></Route>
                             <Route path="/pvp/play/:roomCode" element={<BlackJackPVP user={this.state.user} />}></Route>
+                            <Route path="/profile" element={<Profile user={this.state.user} />}></Route>
+                            <Route path="/profile/:userId" element={<Profile user={this.state.user} />}></Route>
                             <Route path="/rule" element={<BlackJack user={this.state.user} />}></Route>
                             <Route path="/store/" element={<Store />}></Route>
                             <Route path="/store/category/:id" element={<Store />}></Route>

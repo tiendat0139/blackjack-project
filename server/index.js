@@ -11,6 +11,7 @@ const AuthController = require("./controllers/AuthController");
 const ItemController = require("./controllers/ItemController");
 const CategoryController = require("./controllers/CategoryController");
 const PVEController = require("./controllers/PvEController")
+const UserController = require("./controllers/UserController")
 const dbConnection = require("./config/database");
 
 
@@ -34,6 +35,8 @@ app.get("/useritem/:id", ItemController);
 app.get("/store/lucky/:id", ItemController);
 app.put("/store/lucky", ItemController)
 app.post("/pve", PVEController);
+
+app.get("/get-user", UserController)
 
 
 

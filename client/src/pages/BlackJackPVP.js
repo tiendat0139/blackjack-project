@@ -6,6 +6,7 @@ import { AudioContext } from "../provider/AudioProvider"
 import { ThemeContext } from "../provider/ThemeProvider"
 import * as BJUtilities from "../utilities/BlackJackUtilities"
 import "../css/play-pvp.css"
+import Avatar from "../components/Avatar"
 
 const deck = BJUtilities.getDeck()
 
@@ -135,7 +136,12 @@ export default function BlackJackPVP({ user }) {
                                 const cards = roomUser.cards
                                 console.log(cards);
                                 return (
-                                    <div style={{ display: "flex", bottom: "20px" }} className={`${roomUser.user_id == user.user_id ? "auth" : "another"}`} >
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            bottom: "40px"
+                                        }}
+                                        className={`${roomUser.user_id == user.user_id ? "auth" : "another"}`} >
                                         {cards.map((card, index) => {
                                             return (
                                                 <div className={`${index != 0 ? "card-flow" : ""}`}>
@@ -149,10 +155,28 @@ export default function BlackJackPVP({ user }) {
                         })}
                     </div>
                 </div>
-                <div style={{ display: "flex", width: "100%", position: "relative", color: "white", fontWeight: "800", bottom: "20px" }}>
+                <div
+                    style={{
+                        display: "flex",
+                        width: "100%",
+                        position: "relative",
+                        color: "white",
+                        fontWeight: "800",
+                        bottom: "40px"
+                    }}
+                >
                     {roomData.map(u => {
                         return (
-                            <div className={`${u.user_id === user.user_id ? "auth" : "another"}`}>{u.username}</div>
+                            <div
+                                className={`${u.user_id === user.user_id ? "auth" : "another"}`}
+                                style={{
+                                    flexDirection: "column",
+                                    alignItems: "end"
+                                }}
+                            >
+                                <Avatar user={u} size={"32px"} sizeAvt={"16px"} />
+                                {u.username}
+                            </div>
                         )
                     })}
                 </div>
