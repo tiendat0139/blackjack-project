@@ -24,4 +24,8 @@ yarn-debug.log*
 yarn-error.log*
 /config/database.js
 package-lock.json
+<<<<<<< HEAD
 package.json
+=======
+package.json
+>>>>>>> 92032ea (gitignore)
