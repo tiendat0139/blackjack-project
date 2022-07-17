@@ -5,7 +5,6 @@ import '../css/Auth.css';
 import '../css/Tailwindcss.css';
 import socket from './Socket';
 
-
 export default class LoginComponent extends Component {
     constructor (props){
         super(props);
@@ -44,7 +43,7 @@ export default class LoginComponent extends Component {
                 this.setState({user_id: id}, () => {
                     this.props.onSubmit(this.state);
                 });
-                socket.emit('join', this.state.username)
+                socket.emit('join',this.state.username)
             } else {
                 console.log('Failed to log in: Incorrect credentials');
             }

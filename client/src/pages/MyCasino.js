@@ -49,7 +49,7 @@ function MyCasino({ user }) {
   const handleClick = () => {
     setLevel((prevLevel) => prevLevel + 1);
   };
-
+  console.log(user)
   return (
     <div className="wrapper">
       <canvas ref={canvas}></canvas>

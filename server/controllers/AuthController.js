@@ -1,6 +1,5 @@
 const express = require('express');
 const dbConnection = require('../config/database');
-const pool = require('../config/databasePostgres');
 const router = express.Router();
 
 router.post('/login', (req, res) => {

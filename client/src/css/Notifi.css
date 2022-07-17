@@ -23,6 +23,7 @@
 .noti-opt{
     padding: 0 20px;
     margin-top: 10px;
+    border: none;
     display: flex;
     justify-content: space-between;
 }

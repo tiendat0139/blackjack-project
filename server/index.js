@@ -31,17 +31,18 @@ app.get("/store", ItemController);
 app.get("/store/category/:id", ItemController);
 app.get("/category", CategoryController);
 app.get("/useritem/:id", ItemController);
-
+app.get("/store/lucky/:id", ItemController);
+app.put("/store/lucky", ItemController)
 app.post("/pve", PVEController);
 
 
 
 // Socket.io
 const {users, addUser, removeUser, addToRoom, removeFromRoom, getRoomData} = require('./users.js')
-
+ 
 app.use(cors({
     origin: 'http://localhost:3000',
-    method: ['GET', 'POST'],
+    method: ['GET', 'POST', 'PUT'],
     credentials: true
 }))
 const server = http.createServer(app)
@@ -51,7 +52,7 @@ const io = new Server(server, {
         allowedHeaders: ["blackjack-game"],  
         credentials: true 
     } 
-})
+}) 
 
 io.on("connection", (socket) => {
     console.log(socket.id)
@@ -65,16 +66,21 @@ io.on("connection", (socket) => {
         addToRoom(username, roomid) 
         socket.join(roomid)
         const roomData = getRoomData(roomid)
+        io.to(socket.id).emit('all-user', users)
         io.to(roomid).emit('room-data', roomData)
-    })
+    }) 
     socket.on('out-room',(roomid) => {
-        removeFromRoom(socket.id, roomid) 
+        removeFromRoom(socket.id, roomid)
         socket.leave(roomid)
         const roomData = getRoomData(roomid)
         io.to(roomid).emit('room-data', roomData)
     })
     socket.on('send-invite', ({sender, receiverId, roomid}) => {
         io.to(receiverId).emit('invite',{sender, roomid})
+    })
+    socket.on('disconnect', () => {
+        removeUser(socket.id)
+        io.emit('all-user', users)
     })
 })
 

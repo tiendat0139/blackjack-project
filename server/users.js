@@ -13,10 +13,11 @@ const addUser = (userid, username) => {
     }
     // console.log(users)
 }
-const removeUser = (username) => {
-    const findId = users.find(e => e.username === username)
+const removeUser = (userid) => {
+    const findId = users.find(e => e.userid === userid)
     if(findId){
         users.splice(findId,1)
+        console.log(users)
     } else {
         console.log('User not exists')
     } 
@@ -25,9 +26,7 @@ const removeUser = (username) => {
 const addToRoom = (username, roomid) => {
     const usernameTrim = username.trim()
     const findUser = users.find(e => e.username === usernameTrim)
-    if(findUser.roomid !== ''){
-        console.log('User already exists in the room')
-    } else {
+    if(findUser){
         findUser.roomid = roomid
     }
 }
@@ -39,7 +38,6 @@ const removeFromRoom = (userid, roomid) => {
         findUser.roomid = ''
         console.log('Remove user from room')
     }
-    console.log(users)
 }
 const getRoomData = (roomid) => {
     const room = []

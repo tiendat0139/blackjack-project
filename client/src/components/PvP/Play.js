@@ -4,7 +4,7 @@ import '../../css/PvPPlay.css'
 import socket from '../Socket'
 
 
-const PvPPlay = () => {
+const PvPPlay = ({user}) => {
     const [username, setUsername] = useState('')
     const [roomid, setRoomid] = useState('')
     const [owner, setOwner] = useState()
@@ -14,15 +14,13 @@ const PvPPlay = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [searchParams] = useSearchParams()
     const navigate = useNavigate();
-
     useEffect(() => {
         const  getRoomId = searchParams.get('roomCode')
-        const  getUserName = localStorage.getItem('username')
         const getOwner = searchParams.get('owner')
         setRoomid(getRoomId)
-        setUsername(getUserName)
+        setUsername(user.username)
         setOwner(getOwner === 'true'? true : false)
-    },[searchParams])
+    },[searchParams, user.username])
 
     useEffect(() => {
         if(username && roomid){
@@ -31,9 +29,6 @@ const PvPPlay = () => {
         socket.on('room-data', (roomData) => {
             setRoomData(roomData)
         })
-        return () => {
-            socket.emit('out-room',roomid);
-        }
     },[roomid, username])
 
     useEffect(() => {
@@ -60,6 +55,8 @@ const PvPPlay = () => {
         socket.emit('out-room',roomid)
         navigate('/')
     }
+
+    console.log("Playing")
 
     return (
         <div className="pvp-play">

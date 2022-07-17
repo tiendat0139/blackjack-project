@@ -4,7 +4,6 @@ import { Link, Navigate } from 'react-router-dom';
 import '../css/Auth.css';
 import '../css/Tailwindcss.css';
 
-
 export default class LoginComponent extends Component {
     constructor (props){
         super(props);
