@@ -20,6 +20,7 @@
 .nav-option{
     padding-right: 64px;
     display: flex;
+    flex-direction: row;
 }
 .nav-link{
     text-decoration: none;
@@ -27,6 +28,9 @@
 .nav-link i{
     font-size: 24px;
     color: #fff;
+    margin-left: 24px;
+}
+.nav-link div{
     margin-left: 24px;
 }
 .nav-link .nav-icon_dropdown{

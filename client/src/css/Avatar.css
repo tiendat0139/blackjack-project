@@ -1,11 +1,11 @@
 .avatar-wrapper {
-    margin: 100px auto;
+    width: 24px;
+    height:24px;
 }
 
 .nav-default {
     font-size: 24px;
     color: white;
-    margin: auto;
 }
 
 .nav-avatar {
