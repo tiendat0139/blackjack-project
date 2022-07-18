@@ -24,9 +24,9 @@ function Avatar({user}) {
     }, []);
 
     return (
-        <div className="avatar-wrapper">
+        <div style={{display: "inline-block"}}>
             {!isDefault && <img src={avatar} alt="" id="avatar" className='nav-avatar'/>}
-            {isDefault && <i className="fa-solid fa-circle-user nav-default"></i>}
+            {(isDefault) && <i className="fa-solid fa-circle-user nav-default" style={{margin: "0 0"}}></i>}
         </div>
     )
 }
