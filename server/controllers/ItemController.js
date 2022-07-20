@@ -73,4 +73,37 @@ router.put("/store/lucky", (req, res) => {
   );
 });
 
+router.post('/buy', (req,res) => {
+
+  const {user_id, item_id} = req.body;
+  const value = [user_id, item_id];
+
+  dbConnection.query('INSERT INTO users_items (user_id, item_id) VALUES (?) ', [value],
+  (err, result) => {
+      if (err){
+        console.log(err);
+      }   
+      else {
+      console.log('Inserted into database successfully!');
+      res.send(true);
+      }
+  });
+});
+
+router.post('/coin' , (req, res) => {
+  
+  const {user_id, user_money} =req.body;
+
+  dbConnection.query('UPDATE users SET money = ? WHERE user_id = ?', [user_money, user_id],
+  (err, result) => {
+      if (err){
+          res.send({err: err});
+          console.log(err);
+      }
+      if (result) {
+          console.log(result);
+      }
+  });
+});
+
 module.exports = router; 

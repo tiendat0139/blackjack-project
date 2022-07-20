@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require ('body-parser'); 
+const bodyParser = require ('body-parser');
+const path = require('path'); 
 
 const mysql = require('mysql');
 const http = require('http')
@@ -16,6 +17,8 @@ const dbConnection = require("./config/database");
 
 const app = express();
 const PORT = process.env.port || 5000;
+
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
@@ -34,6 +37,8 @@ app.get("/useritem/:id", ItemController);
 app.get("/store/lucky/:id", ItemController);
 app.put("/store/lucky", ItemController)
 app.post("/pve", PVEController);
+app.post("/buy",ItemController);
+app.post("/coin",ItemController);
 
 
 
