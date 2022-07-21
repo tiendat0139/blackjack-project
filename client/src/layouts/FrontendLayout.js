@@ -59,7 +59,7 @@ export default class FrontendLayout extends Component {
                         <Route path="/pvp/play" element={<Play />}></Route>
 >>>>>>> a4c91874b1f8964b590a5873888880fdce878c7c
                         <Route path="/rule" element={<BlackJack user={this.state.user} />}></Route>
-                        <Route path="/store/" element={<Store />}></Route>
+                        <Route path="/store/" element={<Store user={this.state.user}/>}></Route>
                         <Route path="/store/category/:id" element={<Store />}></Route>
                         <Route path="/store/lucky" element={<Lucky user={this.state.user} />}></Route>
                         {/* <Route path='/profile' element={<BlackJack/>}></Route>
