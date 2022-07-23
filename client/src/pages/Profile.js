@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Avatar from "../components/Avatar";
 import Field from "../components/Setting/Field";
@@ -11,7 +11,6 @@ export default function Profile({ user }) {
     const [u, setU] = useState()
 
     useEffect(() => {
-        console.log(params);
         if (params.userId) {
             axios.get("http://localhost:5000/get-user", {
                 params: {

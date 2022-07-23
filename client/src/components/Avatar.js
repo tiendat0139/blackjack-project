@@ -21,7 +21,7 @@ export default function Avatar({ user, size = "64px", sizeAvt = "32px", active =
             {user.avatar ? (
                 <img src={user.avatar} />
             ) : (
-                <i class="fa-solid fa-user" style={{ fontSize: sizeAvt }}></i>
+                <i className="fa-solid fa-user" style={{ fontSize: sizeAvt }}></i>
             )}
         </div>
     )

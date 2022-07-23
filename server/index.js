@@ -37,12 +37,13 @@ app.put("/store/lucky", ItemController)
 app.post("/pve", PVEController);
 
 app.get("/get-user", UserController)
-
+app.post("/update-win", UserController)
+app.post("/update-lose", UserController)
 
 
 // Socket.io
 const {users, addUser, removeUser, addToRoom, removeFromRoom, getRoomData} = require('./socket/users.js');
-const { deal, hitCard, standCard, changePattern } = require('./socket/play-pvp');
+const { deal, hitCard, standCard, changePattern, next, bet } = require('./socket/play-pvp');
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -135,11 +136,18 @@ io.on("connection", (socket) => {
         io.to(roomCode).emit("room-data", currentRoom)
     })
 
+    socket.on('bet', ({ roomCode, userId, betCoin }) => {
+        bet(userId, betCoin)
+        const currentRoom = getRoomData(roomCode)
+        io.to(roomCode).emit("room-data", currentRoom)
+    })
+
     socket.on('change-pattern', ({ roomCode, user, pattern }) => {
         changePattern(roomCode, user, pattern)
         const currentRoom = getRoomData(roomCode)
         io.to(roomCode).emit("room-data", currentRoom)
     })
+
     socket.on('disconnect', () => {
         removeUser(socket.id)
         io.emit('all-user', users)

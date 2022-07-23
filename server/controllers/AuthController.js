@@ -15,6 +15,7 @@ router.post('/login', (req, res) => {
         }
         if (result) {
             res.send(result);
+            console.log(result);
             console.log(`The player ${username} has just logged in`);
         } else {
             res.send({message: 'Wrong credentials'});

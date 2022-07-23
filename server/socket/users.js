@@ -60,8 +60,8 @@ const addUser = (user, socketId) => {
     console.log("users: ", users)
 }
 
-const removeUser = (username) => {
-    const findId = users.find(e => e.username === username)
+const removeUser = (socketId) => {
+    const findId = users.find(e => e.socketId === socketId)
     if(findId){
         users.splice(findId, 1)
     } else {
@@ -71,31 +71,56 @@ const removeUser = (username) => {
 
 const addToRoom = (roomId, user, pattern) => {
     const findUser = users.find(e => e.user_id === user.user_id)
-    console.log(findUser);
+    console.log(findUser, typeof findUser);
 
     if (findUser) {
-        if (getRoomData(roomId).length === 0) {
-            findUser.role = 1
-            findUser.state = "deal"
+        console.log("roomId77: ", roomId)
+
+        if (findUser.roomId.length < 5 || typeof findUser.roomId === "object") {
+            console.log("roomId79: ", roomId);
+            if (getRoomData(roomId).length === 0) {
+                findUser.role = 1
+                findUser.state = "deal"
+            } else {
+                findUser.role = 0
+                findUser.state = "waiting-deal"
+            }
+            findUser.pattern = pattern
+            findUser.roomId = roomId
+            console.log("roomId89:", roomId);
         } else {
-            findUser.role = 0
-            findUser.state = "waiting-deal"
+            console.log("User is in room!");
         }
-        findUser.pattern = pattern
-        findUser.roomId = roomId
+    } else {
+        console.log("User is not exist!");
     }
 }
 
 
 const removeFromRoom = (userId, roomId) => {
-    const findUser = users.find(e => e.userid === userId && e.roomid === roomId)
+    const findUser = users.find(e => e.user_id === userId && e.roomId === roomId)
     if(!findUser){
         console.log('User not exists in any room')
-    } else {
-        findUser.roomid = ''
+    } else if (findUser.role === 0) {
+        findUser.roomId = ''
+        findUser.role = null
+        findUser.state = null
+        findUser.cards = null
+        findUser.rank = null
+        findUser.betCoin = null
         console.log('Remove user from room')
+    } else if (findUser.role === 1) {
+        const room = getRoomData(roomId) 
+        for (let i = 0; i < room.length; i++) {
+            room[i].roomId = ''
+            room[i].role = null
+            room[i].state = null
+            room[i].cards = null
+            room[i].betCoin = null
+            room[i].rank = null
+        }
     }
-    console.log(users)
+    console.log("users112: ", users)
 }
 const getRoomData = (roomId) => {
     const room = []

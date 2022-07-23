@@ -17,19 +17,21 @@ import Notifi from "../components/Notifi";
 import "../css/button.css"
 import Lucky from "../components/Lucky";
 import Profile from "../pages/Profile";
+import socket from "../components/Socket";
+import Next from "../components/PvP/Next";
 
 export default class FrontendLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false,
-      user: 1,
+        user: null,
+        loggedIn: false
     };
     this.handleAuth = this.handleAuth.bind(this);
   }
 
     handleAuth(user){
-        this.setState({user: user}, () => {
+        this.setState({user: user, loggedIn: true}, () => {
             console.log(user)
             console.log('Okay you can play this game!');
         });
@@ -38,12 +40,18 @@ export default class FrontendLayout extends Component {
         return (
             <ThemeProvider>
                 <AudioProvider>
-                    <Navbar user={this.state.user} onLogout={() => {
-                        this.setState({user: null}, () => {
-                            console.log('Logged out!!');
-                        });
-                    }} />
-                    <Notifi />
+                    {this.state.user && (
+                        <>
+                            <Navbar
+                                user={this.state.user}
+                                onLogout={() => {
+                                    this.setState({user: null}, () => {
+                                        console.log('Logged out!!');
+                                    });
+                                    //socket.disconnect()
+                                }} />
+                            <Notifi />
+                        </>)}
                     <Routes>
                         <Route path="/register" element={<Register user={this.state.user}/>}></Route>
                         <Route path="/login" element={<LoginComponent user={this.state.user} onSubmit={this.handleAuth} />}></Route>
@@ -54,6 +62,7 @@ export default class FrontendLayout extends Component {
                             <Route path="/pvp" element={<Join />}></Route>
                             <Route path="/pvp/waiting-room/:roomCode" element={<Play user={this.state.user} />}></Route>
                             <Route path="/pvp/play/:roomCode" element={<BlackJackPVP user={this.state.user} />}></Route>
+                            <Route path="/pvp/next" element={<Next />}></Route>
                             <Route path="/profile" element={<Profile user={this.state.user} />}></Route>
                             <Route path="/profile/:userId" element={<Profile user={this.state.user} />}></Route>
                             <Route path="/rule" element={<BlackJack user={this.state.user} />}></Route>

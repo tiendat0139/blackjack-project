@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import { BgMusic, HitSound, NextSound, StandSound } from "../assets/audio/audio"
+import { BgMusic, HitSound, LosingSound, NextSound, StandSound, WinSound } from "../assets/audio/audio"
 
 export const AudioContext = createContext()
 
@@ -9,6 +9,8 @@ export default function AudioProvider({ children }) {
         hitSound: HitSound,
         standSound: StandSound,
         nextSound: NextSound,
+        losingSound: LosingSound,
+        winSound: WinSound
     })
 
     useEffect(() => {

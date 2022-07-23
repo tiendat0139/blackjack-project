@@ -1,32 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card as MuiCard, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { ThemeContext } from "../provider/ThemeProvider";
 
 const useCardStyles = makeStyles({
   root: {
     width: "105px",
     height: "150px",
     marginBottom: "16px",
-    color: (props) => {
-      if (props.card === null) {
-        return "black";
-      }
-      if (props.hide) {
-        return "black";
-      }
-      switch (props.card?.suit) {
-        case "❤":
-        case "♦":
-          return "red";
-        default:
-          return "black";
-      }
-    },
     border: "1px solid grey"
   },
   content: {
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   top: {
     height: "30px",
@@ -49,6 +35,7 @@ const useCardStyles = makeStyles({
 });
 
 export default function Card(props) {
+  const { pattern } = useContext(ThemeContext)
   const classes = useCardStyles(props);
   const topAndBottom =
     props.card === null || props.hide ? "?" : props.card?.suit + props.card?.rank;
@@ -56,7 +43,14 @@ export default function Card(props) {
 
   return (
     <MuiCard className={classes.root}>
-      <Box className={classes.content} display="flex" flexDirection="column">
+      <Box
+        className={classes.content}
+        display="flex"
+        flexDirection="column"
+        style={{
+          color: props.card?.suit === "❤" || props.card?.suit === "♦" ? "red" : "black"
+        }}
+      >
         {(topAndBottom != "?" && middle != "?") ? (
           <>
             <Box className={classes.top} alignSelf="flex-start">

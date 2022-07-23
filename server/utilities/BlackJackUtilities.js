@@ -5,11 +5,9 @@ function getDeck(numberOfDeck = 1) {
     const deck = [];
   
     for (let i = 0; i < numberOfDeck; i++) {
-      for (let j = 0; j < 4; j++) {
-        for (let k = 0; k < 13; k++) {
-          deck.push({ suit: suits[j], rank: ranks[k] })
-        }
-      }
+      suits.forEach((suit) =>
+        ranks.forEach((rank) => deck.push({ suit: suit, rank: rank }))
+      );
     }
     return deck;
   }
@@ -83,7 +81,9 @@ function getDeck(numberOfDeck = 1) {
     return false;
   }
   
-  function isBlackJack(hand) {
+function isBlackJack(hand) {
+    console.log("hand: ", hand);
+
     const firstCard = hand[0];
     const secondCard = hand[1];
     if (
@@ -189,4 +189,4 @@ function getActionOnPlayer(dealersHand, playersHand){
     return 'win';
 }
 
-export { getDeck, getRankNum, getTotal, checkDealersScore, isAce, isBlackJack, isFaceCardOrTen, isSoftHand, getScore, judge, getActionOnPlayer, getScoreForDisplay, getLastScore }
+module.exports = {getDeck, getRankNum, getTotal, checkDealersScore, isAce, isBlackJack, isFaceCardOrTen, isSoftHand, getScore, judge, getActionOnPlayer }

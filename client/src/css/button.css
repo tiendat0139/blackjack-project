@@ -22,3 +22,10 @@ button {
     padding-left: 16px;
     padding-right: 16px;
 }
+
+.button-bet {
+    background-color: rgb(0, 0, 0, 0.5);
+    border-bottom: 4px solid rgb(0, 0, 0, 0.8);
+    border-right: 3px solid rgb(0, 0, 0, 0.8);
+    margin-top: 40px;
+}
