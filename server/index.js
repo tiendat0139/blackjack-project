@@ -76,6 +76,9 @@ io.on("connection", (socket) => {
     socket.on('send-invite', ({sender, receiverId, roomid}) => {
         io.to(receiverId).emit('invite',{sender, roomid})
     })
+    socket.on('duel', (roomid) => {   // join and all-socket has socket.id not equal
+        io.to(roomid).emit('enter-duel');
+    })
     socket.on('disconnect', () => {
         removeUser(socket.id)
         io.emit('all-user', users)

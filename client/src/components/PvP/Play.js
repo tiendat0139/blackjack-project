@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import '../../css/PvPPlay.css'
 import socket from '../Socket'
+import {Link} from 'react-router-dom'
 
 
 const PvPPlay = ({user}) => {
@@ -32,7 +33,11 @@ const PvPPlay = ({user}) => {
 
     useEffect(() => {
         socket.on('all-user',(users) => {
+            console.log(users)
             setUsers(users)
+        })
+        socket.on('enter-duel', () => {
+            navigate('/pvp/playarea')
         })
     })
 
@@ -51,8 +56,12 @@ const PvPPlay = ({user}) => {
         socket.emit('send-invite', {sender, receiverId, roomid})
     }
     const handleOutRoom = () => {
-        socket.emit('out-room',roomid)
+        socket.emit('out-room', roomid)
         navigate('/')
+    }
+
+    const handleJoinGame = () => {
+        socket.emit('duel', roomid)
     }
 
     console.log("Playing")
@@ -93,7 +102,13 @@ const PvPPlay = ({user}) => {
                     ))}
                 </div>
                 {
-                    owner?<button type="" className="play-btn">Start Game</button> : ''
+                    owner
+                    ?
+                    <Link to={"/pvp/playarea"}>
+                        <button type="" className="play-btn" onClick={handleJoinGame}>Start Game</button>
+                    </Link>
+                    : 
+                    ''
                 }
                 <button type="" className="play-btn leave-btn" onClick={handleOutRoom}>Leave Room</button>
 

@@ -18,7 +18,7 @@ export default class FrontendLayout extends Component {
     super(props);
     this.state = {
       loggedIn: false,
-      user: 1,
+      user: null,
     };
     this.handleAuth = this.handleAuth.bind(this);
   }

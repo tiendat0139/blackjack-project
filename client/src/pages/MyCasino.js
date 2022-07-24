@@ -2,7 +2,6 @@ import React from "react";
 import "../css/MyCasino.css";
 import Axios from "axios";
 import { useEffect, useState, useRef } from "react";
-import CasinoImg from "../assets/img/casino.png";
 
 function MyCasino({ user }) {
   const [name, setName] = useState("");
@@ -15,14 +14,6 @@ function MyCasino({ user }) {
   const canvas = useRef(null);
 
   useEffect(() => {
-    let ctx = canvas.current.getContext("2d");
-    var image = new Image();
-    image.src = CasinoImg;
-    var scale = Math.min(canvas.current.width / image.width, canvas.current.height / image.height);
-    var x = (canvas.current.width / 2) - (image.width / 2) * scale;
-    var y = (canvas.current.height / 2) - (image.height / 2) * scale;
-    ctx.drawImage(image, x, y, image.width * scale, image.height * scale);
-
     Axios.post("http://localhost:5000/my-casino", {
       params: {
         user_id: user.user_id,
@@ -49,6 +40,32 @@ function MyCasino({ user }) {
   const handleClick = () => {
     setLevel((prevLevel) => prevLevel + 1);
   };
+
+  const handleDecorate = async (id) => {
+    let found = item.find(element => element.item_id == id);
+    let ctx = canvas.current.getContext("2d");
+    var image = new Image();
+    image.src = found.image
+    let scale = canvas.current.width/canvas.current.height
+    let proportion = canvas.current.width/image.width
+    console.log(canvas.current.height)
+    console.log(image.height)
+    
+
+    switch(found.item_id){
+      case 1:
+        ctx.drawImage(image, 0, 0, canvas.current.width, canvas.current.height);
+        break;
+      case 2:
+        ctx.drawImage(image, canvas.current.width/2-image.width*proportion/8, 0, image.width*proportion/4, image.height*proportion/4);
+        break;
+      case 3:
+        ctx.drawImage(image, canvas.current.width/2-image.width*proportion/4, canvas.current.height-image.height*proportion/2, image.width*proportion/2, image.height*proportion/2);
+        break;
+      default:
+        console.log("Can't find the item")
+    }
+  }
   console.log(user)
   return (
     <div className="wrapper">
@@ -105,7 +122,7 @@ function MyCasino({ user }) {
         {item.map((item) => (
           <>
             <p>{item.item_name}</p>
-            <button style={{ color: "yellow" }}>Decorate</button>
+            <button style={{ color: "yellow" }} onClick={()=>handleDecorate(item.item_id)}>Decorate</button>
             <button style={{ color: "red" }}>Remove</button>
           </>
         ))}
