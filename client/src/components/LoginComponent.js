@@ -43,6 +43,7 @@ export default class LoginComponent extends Component {
                 this.setState({user_id: id}, () => {
                     this.props.onSubmit(this.state);
                 });
+                this.props.onSubmit(response.data[0])
                 socket.emit('join',this.state.username)
             } else {
                 console.log('Failed to log in: Incorrect credentials');

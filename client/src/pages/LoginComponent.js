@@ -3,6 +3,7 @@ import Axios from 'axios';
 import { Link, Navigate } from 'react-router-dom';
 import '../css/Auth.css';
 import '../css/Tailwindcss.css';
+import socket from '../components/Socket';
 
 export default class LoginComponent extends Component {
     constructor (props){
@@ -36,12 +37,15 @@ export default class LoginComponent extends Component {
             username: this.state.username,
             password: this.state.password
         }).then((response) => {
+            console.log(response);
             const isLoggedIn = response.data.length;
             if (isLoggedIn) {
                 let id = response.data[0].user_id;
                 this.setState({user_id: id}, () => {
-                    this.props.onSubmit(this.state);
+                    this.props.onSubmit(response.data[0]);
                 });
+                console.log("login");
+                socket.emit("join", { username: this.state.username, user_id: id })
             } else {
                 console.log('Failed to log in: Incorrect credentials');
             }

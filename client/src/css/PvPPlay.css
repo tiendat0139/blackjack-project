@@ -59,7 +59,7 @@
 }
 .play-btn{
     font-family: 'Russo One', sans-serif;
-    margin-top: 80px;
+    margin-top: 40px;
     padding: 16px 30px;
     font-size: 20px;
     color: #fff;
@@ -122,3 +122,31 @@
     opacity: 0.8;
     font-size: 22px;
 }
+
+.coin {
+    width: 24px;
+    height: 24px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: yellowgreen 2px solid;
+    border-right: yellowgreen 2px solid;
+}
+
+
+.alert {
+    animation: showAlert 1s ease-out;
+}
+
+@keyframes showAlert {
+    from {
+        top: -8px;
+    }
+
+    to {
+        top: 0
+    }
+}
+

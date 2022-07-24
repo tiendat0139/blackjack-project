@@ -6,12 +6,12 @@ import '../css/Notifi.css'
 
 const Notifi = () => {
     const [sendUser, setSenduser] = useState('')
-    const [roomid, setRoomid] = useState('')
+    const [roomId, setRoomid] = useState('')
     const [show, setShow] = useState(false)
-    socket.on('invite',({sender, roomid}) => {
+    socket.on('invite',({sender, roomId}) => {
         console.log("inviting")
         setSenduser(sender)
-        setRoomid(roomid)
+        setRoomid(roomId)
         setShow(true)
     })
     const handleHide = () => {
@@ -20,10 +20,10 @@ const Notifi = () => {
     return <div className={`noti ${show? 'show' : 'hide'}`}>
         <h4 className='noti-header'>{sendUser} があなたを試合に招待した</h4>
         <div className='noti-opt'>
-            <Link to={`pvp/play?roomCode=${roomid}&owner=false`}>
+            <Link to={`pvp/waiting-room/${roomId}`}>
                 <button className='noti-opt_acp' onClick={handleHide}>Accept</button>
             </Link>
-            <button className='noti-opt_refu' onClick={handleHide}>Refuse</button>
+            <button className='noti-opt_refu' onClick={handleHide}>Refure</button>
         </div>
     </div>
 }

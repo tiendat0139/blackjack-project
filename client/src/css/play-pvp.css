@@ -1,0 +1,76 @@
+.play-pvp {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.auth {
+    position: absolute;
+    left: 0
+}
+
+.another {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.action {
+    padding: 8px;
+    width: 100px;
+    border-radius: 20px;
+}
+
+.hit {
+    background-color: red;
+}
+
+.stand {
+    background-color: green;
+}
+
+.deal {
+    background-color: black;
+    border: 2px solid white;
+}
+
+.auth > .cards > .card-flow {
+    margin-left: -50px
+}
+
+.another > .cards > .card-flow {
+    margin-right: -50px;
+}
+
+.another > .cards {
+    flex-direction: row-reverse;
+}
+
+.bj {
+    font-weight: 800;
+    background-color: red;
+    padding: 4px;
+    border-radius: 4px;
+    transform: rotate(-15deg);
+    /* box-shadow: rgba(255, 255, 255, 0.6) 4px -4px 4px -2px, rgba(255, 255, 255, 0.6) 4px -4px; */
+}
+
+.won-rank {
+    font-weight: 800;
+    color: red;
+    border: 2px solid red;
+    border-radius: 4px;
+    padding: 4px;
+    transform: rotate(-15deg);
+    /* box-shadow: black 4px -4px 0px -2px, red 4px -4px; */
+}
+
+.losed {
+    font-weight: 800;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 4px;
+    border-radius: 4px;
+    transform: rotate(-15deg);
+    /* box-shadow: rgba(255, 255, 255, 0.6) 4px -4px 4px -2px, rgba(255, 255, 255, 0.6) 4px -4px; */
+}

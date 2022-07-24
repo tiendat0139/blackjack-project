@@ -1,15 +1,11 @@
 .store {
     margin-top: 48px;
+    overflow: auto;
 }
 
 .label {
     text-align: center;
     background-color: brown;
-}
-
-.coin {
-    float: right;
-    position: fixed;
 }
 
 .selling {
@@ -28,13 +24,15 @@
 .itemlist {
     display: flex;
     flex-wrap: wrap;
-    background-color: #FF0000;
+    background-color: #3D0000;
     flex: 1 1 1500px;
+    overflow: auto;
 }
 
-.itemimage {
-    height: 200px;
-    overflow:hidden
+.itemimage > img {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
 }
 
 .item {
@@ -42,4 +40,12 @@
     height:300px;
     margin: 0px 0px 0px 20px;
     background-color: white;
+}
+
+.iteminfo {
+    background-color: #0F8E04;
+}
+
+.pagination {
+    color: white;
 }

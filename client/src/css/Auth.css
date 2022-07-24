@@ -2,12 +2,15 @@
     position: fixed;
     left: 0;
     right: 0;
-    top: 48px;
+    top: 0;
     bottom: 0;
     z-index: 0;
     background-image: url('../../src/assets/img/topbg.jpg');
     background-position: center;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #form-register {
@@ -34,7 +37,6 @@
 .auth-card {
     width: 500px;
     height: auto;
-    margin: 100px auto 0;
     padding: 10px 40px 20px;
     display: flex;
     flex-direction: column;
