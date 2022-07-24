@@ -23,7 +23,7 @@ const Notifi = () => {
             <Link to={`pvp/play?roomCode=${roomid}&owner=false`}>
                 <button className='noti-opt_acp' onClick={handleHide}>Accept</button>
             </Link>
-            <button className='noti-opt_refu' onClick={handleHide}>Refure</button>
+            <button className='noti-opt_refu' onClick={handleHide}>Refuse</button>
         </div>
     </div>
 }

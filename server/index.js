@@ -35,8 +35,6 @@ app.get("/store/lucky/:id", ItemController);
 app.put("/store/lucky", ItemController)
 app.post("/pve", PVEController);
 
-
-
 // Socket.io
 const {users, addUser, removeUser, addToRoom, removeFromRoom, getRoomData} = require('./users.js')
  
@@ -78,6 +76,9 @@ io.on("connection", (socket) => {
     socket.on('send-invite', ({sender, receiverId, roomid}) => {
         io.to(receiverId).emit('invite',{sender, roomid})
     })
+    socket.on('duel', (roomid) => {   // join and all-socket has socket.id not equal
+        io.to(roomid).emit('enter-duel');
+    })
     socket.on('disconnect', () => {
         removeUser(socket.id)
         io.emit('all-user', users)
@@ -88,7 +89,6 @@ io.on("connection", (socket) => {
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}...`);
 });
-
 
 module.exports.app = app;
 // module.exports.dbConnection = dbConnection;

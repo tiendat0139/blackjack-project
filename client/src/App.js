@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import "./styles.css";
 import { Routes , Route} from 'react-router-dom'
 import FrontendLayout from '../src/layouts/FrontendLayout'
 

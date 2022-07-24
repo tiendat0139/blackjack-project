@@ -1,8 +1,10 @@
 canvas {
   grid-column: 1/5;
-    grid-row: 1/5;
-    padding: 0px;
-  background-color: red;
+  grid-row: 1/5;
+  padding: 0px;
+  background-color: white;
+  color: white;
+  border: 1px solid black;
 }
 
 
